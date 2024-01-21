@@ -21,7 +21,6 @@ function App() {
     <div id="background">
       <div className="flex h-full w-full flex-col items-center overflow-auto pt-[30px]">
         <h1>DELIVERY FEE CALCULATION</h1>
-
         <div className="mt-8 grid w-[70%] max-w-[1450px] grid-cols-1 gap-4 tablet:grid-cols-2">
           <div>
             <OrderDetailsForm
