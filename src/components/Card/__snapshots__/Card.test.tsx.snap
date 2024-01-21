@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="w-full rounded-xl bg-white p-5 shadow-xl"
+    data-testid="card"
+  >
+    Cart Title
+  </div>
+</DocumentFragment>
+`;
