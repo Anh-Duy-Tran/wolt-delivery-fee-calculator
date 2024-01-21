@@ -35,7 +35,7 @@ export function FeeResult({ orderDetails, result }: FeeResultProps) {
             <h3>Delivery price:</h3>
             <h1
               data-testid={'fee'}
-              className="indented from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent"
+              className="indented bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
             >
               {`${result.deliveryFee.toFixed(2)}€`}
             </h1>

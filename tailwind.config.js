@@ -6,8 +6,8 @@ export default {
       colors: {
         'wolt-grey': '#E7E7E7',
         'wolt-blue': '#039DE0',
-        "primary": "#03C3EC",
-        "secondary" : "#017AD5"
+        primary: '#03C3EC',
+        secondary: '#017AD5',
       },
       boxShadow: {
         'border-like': '0 0px 0px 1.5px #039DE0',

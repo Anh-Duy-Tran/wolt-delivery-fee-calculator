@@ -12,7 +12,7 @@
     display: relative;
   }
   #background {
-    @apply from-primary to-secondary absolute h-screen w-screen bg-gradient-to-br;
+    @apply absolute h-screen w-screen bg-gradient-to-br from-primary to-secondary;
   }
 
   h1 {
