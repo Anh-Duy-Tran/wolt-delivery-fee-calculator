@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
