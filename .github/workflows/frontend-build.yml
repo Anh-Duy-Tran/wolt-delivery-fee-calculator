@@ -16,10 +16,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: .
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,10 +32,6 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: .
 
     steps:
       - name: Checkout code
@@ -61,10 +53,6 @@ jobs:
 
   test-unit:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: .
 
     steps:
       - name: Checkout code
@@ -88,15 +76,10 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-  test-cypress:
+  cypress-run:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: .
-
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install Node.js
@@ -107,19 +90,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build application
-        run: npm run build
-
-      - name: Run cypress tests
-        run: npm run cy:ci
-
-  cypress-run:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
