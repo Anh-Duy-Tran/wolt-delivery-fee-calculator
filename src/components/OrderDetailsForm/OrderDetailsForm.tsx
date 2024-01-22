@@ -1,5 +1,4 @@
 import { InputField } from '../InputField';
-import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '../Button';
@@ -8,6 +7,7 @@ import {
   deliveryFeeCaculator,
 } from '../../utils/deliveryFeeCaculator';
 import { Card } from '../Card';
+import { validationSchema } from '../../utils/orderDetailsValidationSchema';
 
 interface OrderDetailsFormProps {
   saveCalculatedOrderDetails: (orderDetails: OrderDetailFormType) => void;
@@ -25,28 +25,6 @@ export function OrderDetailsForm({
   saveCalculatedOrderDetails,
   handleResult,
 }: OrderDetailsFormProps) {
-  const validationSchema = Yup.object().shape({
-    cartValue: Yup.number()
-      .transform((value) => (isNaN(value) ? undefined : value))
-      .required('Cart value is required.')
-      .positive('Cart value must be a positive number.'),
-    deliveryDistance: Yup.number()
-      .transform((value) => (isNaN(value) ? undefined : value))
-      .required('Delivery distance is required.')
-      .positive('Delivery distance must be a positive number.')
-      .integer('Delivery distance must be a whole number.'),
-    numberOfItems: Yup.number()
-      .transform((value) => (isNaN(value) ? undefined : value))
-      .required('Number of items is required.')
-      .positive('Number of items must be a positive number.')
-      .integer('Number of items must be a whole number.'),
-    orderTime: Yup.date()
-      .transform(function (value) {
-        return this.isType(value) ? value : undefined;
-      })
-      .required('Please enter a valid time.'),
-  });
-
   const {
     handleSubmit,
     register,

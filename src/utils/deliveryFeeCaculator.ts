@@ -1,18 +1,22 @@
 import { OrderDetailFormType } from '../components/OrderDetailsForm/OrderDetailsForm';
+import { validationSchema } from './orderDetailsValidationSchema';
 
-const MAX_DELIVERY_FEE = 15; // Euro
+export const MAX_DELIVERY_FEE = 15; // Euro
 
 type AdditionalFeeRuleType = {
+  type: string;
   message: string;
   calculateAdditionalFee: (orderDetails: OrderDetailFormType) => number;
 };
 
 type FreeDeliveryRuleType = {
+  type: string;
   message: string;
   condition: (orderDetails: OrderDetailFormType) => boolean;
 };
 
 type FeeBasedRuleType = {
+  type: string;
   message: string;
   calculateFeeBasedAdditionalFee: (
     orderDetails: OrderDetailFormType,
@@ -28,8 +32,9 @@ export type FeeCalculatorReturnType = {
   }[];
 };
 
-const additionalFeeRules: AdditionalFeeRuleType[] = [
+export const additionalFeeRules: AdditionalFeeRuleType[] = [
   {
+    type: 'smallOrder',
     message:
       'For orders under 10€, a small order surcharge equal to the difference up to 10€ will be added to your delivery fee.',
     calculateAdditionalFee: ({ cartValue }) => {
@@ -39,13 +44,14 @@ const additionalFeeRules: AdditionalFeeRuleType[] = [
     },
   },
   {
+    type: 'deliveryDistance',
     message:
       'Delivery fee: 2€ for the first 1km, plus 1€ for every additional 500m (minimum 1€ surcharge for distances over 1km).',
     calculateAdditionalFee: ({ deliveryDistance }) => {
       const fixPriceDistance = 1000; // Meter
+      const fixPrice = 2; // Euro
       const distanceInterval = 500; // Meter
       const pricePerInterval = 1; // Euro
-      const fixPrice = 2; // Euro
 
       return (
         fixPrice +
@@ -57,6 +63,7 @@ const additionalFeeRules: AdditionalFeeRuleType[] = [
     },
   },
   {
+    type: 'itemCount',
     message:
       'Orders with 5+ items incur a 50 cent surcharge per item, starting from the 5th item, and a 1,20€ bulk fee for more than 12 items.',
     calculateAdditionalFee: ({ numberOfItems }) => {
@@ -80,8 +87,9 @@ const additionalFeeRules: AdditionalFeeRuleType[] = [
   },
 ];
 
-const freeDeliveryRules: FreeDeliveryRuleType[] = [
+export const freeDeliveryRules: FreeDeliveryRuleType[] = [
   {
+    type: 'freeDelivery',
     message: 'Enjoy free delivery for order of 200€ or more.',
     condition: ({ cartValue }) => {
       const threshold = 200; //Euro
@@ -91,8 +99,9 @@ const freeDeliveryRules: FreeDeliveryRuleType[] = [
   },
 ];
 
-const feeBasedRules: FeeBasedRuleType[] = [
+export const feeBasedRules: FeeBasedRuleType[] = [
   {
+    type: 'rushHour',
     message:
       'During Friday rush hours (3 - 7 PM Local Time Zone), delivery fees are increased by 1.2x.',
     calculateFeeBasedAdditionalFee: (orderDetails, currentFee) => {
@@ -107,8 +116,7 @@ const feeBasedRules: FeeBasedRuleType[] = [
         orderTime.getHours() >= lowerRushHour &&
         orderTime.getHours() < higherRushHour
       ) {
-        const extraFee = currentFee * increaseFactor;
-        return extraFee + currentFee > MAX_DELIVERY_FEE ? 0 : extraFee;
+        return currentFee * increaseFactor;
       }
 
       return 0;
@@ -119,6 +127,10 @@ const feeBasedRules: FeeBasedRuleType[] = [
 export function deliveryFeeCaculator(
   orderDetails: OrderDetailFormType
 ): FeeCalculatorReturnType {
+  if (!validationSchema.isValidSync(orderDetails)) {
+    throw new TypeError('Invalid Order Details');
+  }
+
   const deliveryFeeResponse: FeeCalculatorReturnType = {
     deliveryFee: 0,
     subjectedRules: [],
@@ -163,10 +175,11 @@ export function deliveryFeeCaculator(
     }
   }
 
+  // Maximum fee rule
   if (deliveryFeeResponse.deliveryFee > MAX_DELIVERY_FEE) {
     deliveryFeeResponse.deliveryFee = MAX_DELIVERY_FEE;
     deliveryFeeResponse.subjectedRules.push({
-      message: 'Maximum delivery fee reached',
+      message: `Maximum delivery fee of ${MAX_DELIVERY_FEE}€ reached`,
       amount: '',
     });
   }

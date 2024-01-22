@@ -11,7 +11,6 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "test": "vitest",
-    "pretest": "npx tailwindcss -i ./src/index.css -o ./src/test/index.css",
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {

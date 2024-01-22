@@ -47,7 +47,9 @@ export function FeeResult({ orderDetails, result }: FeeResultProps) {
               tipContent={
                 <ul className="flex list-disc flex-col gap-2">
                   {result.subjectedRules.map((rule, i) => (
-                    <li key={i}>{`${rule.message} ( ${rule.amount} )`}</li>
+                    <li
+                      key={i}
+                    >{`${rule.message} ${rule.amount !== '' ? `( ${rule.amount} )` : ''}`}</li>
                   ))}
                 </ul>
               }
