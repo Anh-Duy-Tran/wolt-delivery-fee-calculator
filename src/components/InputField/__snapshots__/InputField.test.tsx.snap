@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InputField Component > renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="relative flex w-full items-center justify-center"
+    >
+      <input
+        class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
+        data-testid="input-field"
+      />
+      <label
+        class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 
+        select-none opacity-60 transition-all peer-focus:-translate-y-3 peer-focus:scale-[65%] false"
+      >
+        Test Label
+      </label>
+    </div>
+  </div>
+</DocumentFragment>
+`;

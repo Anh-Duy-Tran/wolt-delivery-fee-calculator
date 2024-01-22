@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1705872901167" clover="3.2.0">
+  <project timestamp="1705872901167" name="All files">
+    <metrics statements="19" coveredstatements="19" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="8" elements="31" coveredelements="31" complexity="0" loc="19" ncloc="19" packages="4" files="7" classes="7"/>
+    <package name="Button">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="Button.tsx" path="/Users/duytran/CareerProject/Wolt/delivery-fee-calculator/src/components/Button/Button.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/duytran/CareerProject/Wolt/delivery-fee-calculator/src/components/Button/index.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="Card">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="Card.tsx" path="/Users/duytran/CareerProject/Wolt/delivery-fee-calculator/src/components/Card/Card.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="11" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/duytran/CareerProject/Wolt/delivery-fee-calculator/src/components/Card/index.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="FeeResult">
+      <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <file name="FeeResult.tsx" path="/Users/duytran/CareerProject/Wolt/delivery-fee-calculator/src/components/FeeResult/FeeResult.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="50" count="10" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="InfoTooltip">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="InfoTooltip.tsx" path="/Users/duytran/CareerProject/Wolt/delivery-fee-calculator/src/components/InfoTooltip/InfoTooltip.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="14" count="11" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/duytran/CareerProject/Wolt/delivery-fee-calculator/src/components/InfoTooltip/index.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="13" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

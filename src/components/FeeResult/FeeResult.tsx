@@ -3,6 +3,9 @@ import { Card } from '../Card';
 import { InfoTooltip } from '../InfoTooltip';
 import { OrderDetailFormType } from '../OrderDetailsForm/OrderDetailsForm';
 
+export const DEFAULT_MESSAGE =
+  'Fill in order details and press calculate to get result.';
+
 interface FeeResultProps {
   orderDetails?: OrderDetailFormType;
   result?: FeeCalculatorReturnType;
@@ -35,7 +38,7 @@ export function FeeResult({ orderDetails, result }: FeeResultProps) {
             <h3>Delivery price:</h3>
             <h1
               data-testid={'fee'}
-              className="indented bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+              className="indented from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent"
             >
               {`${result.deliveryFee.toFixed(2)}€`}
             </h1>
@@ -55,7 +58,7 @@ export function FeeResult({ orderDetails, result }: FeeResultProps) {
         </>
       ) : (
         <div className="w-full text-center italic text-black/50">
-          Fill in order details and press calculate to get result.
+          {DEFAULT_MESSAGE}
         </div>
       )}
     </Card>

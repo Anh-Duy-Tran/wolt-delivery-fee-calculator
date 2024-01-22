@@ -1,0 +1,114 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FeeResult Component > renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col gap-4 w-full rounded-xl bg-white p-5 shadow-xl"
+    data-testid="card"
+  >
+    <h2>
+      CALCULATION RESULT
+    </h2>
+    <div
+      class="w-full text-center italic text-black/50"
+    >
+      Fill in order details and press calculate to get result.
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FeeResult Component > renders correctly with props 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col gap-4 w-full rounded-xl bg-white p-5 shadow-xl"
+    data-testid="card"
+  >
+    <h2>
+      CALCULATION RESULT
+    </h2>
+    <div>
+      <h3>
+        Order details:
+      </h3>
+      <div
+        class="indented grid grid-cols-2"
+      >
+        <p
+          data-testid="submittedCartValue"
+        >
+          • Cart Value: 100.00€
+        </p>
+        <p
+          data-testid="submittedDeliveryDistance"
+        >
+          • Distance: 2000m
+        </p>
+        <p
+          data-testid="submittedNumberOfItems"
+        >
+          • Number of items: 3
+        </p>
+        <p
+          data-testid="submittedOrderTime"
+        >
+          • Time: Sun Jan 21 2024 at 12:00:00 PM
+        </p>
+      </div>
+    </div>
+    <div
+      class="relative"
+    >
+      <h3>
+        Delivery price:
+      </h3>
+      <h1
+        class="indented from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent"
+        data-testid="fee"
+      >
+        15.00€
+      </h1>
+      <div
+        class="relative"
+      >
+        <div
+          class="peer absolute bottom-0 right-0 rounded ring-wolt-blue focus:ring-2"
+          data-testid="info-icon"
+          tabindex="0"
+        >
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.5 16.8v-1.2h1v1.2h-1zm0-9.6v7.2h1V7.2h-1z"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M12 21.6a9.6 9.6 0 0 0 9.6-9.6 9.6 9.6 0 1 0-19.2 0 9.6 9.6 0 0 0 9.6 9.6zm0-1a8.6 8.6 0 1 0 0-17.2 8.6 8.6 0 0 0 0 17.2z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div
+          class="absolute right-0 mt-2 w-[400px] scale-75 rounded-md bg-slate-700 p-3 px-5 pl-7 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
+          data-testid="tooltip"
+        >
+          <ul
+            class="flex list-disc flex-col gap-2"
+          >
+            <li>
+              Base fee ( 5€ )
+            </li>
+            <li>
+              Distance fee ( 10€ )
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

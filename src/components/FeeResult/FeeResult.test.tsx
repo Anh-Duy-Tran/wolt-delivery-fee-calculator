@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { FeeResult } from './FeeResult';
+import { expect, it, describe } from 'vitest';
+import { DEFAULT_MESSAGE, FeeResult } from './FeeResult';
 import { OrderDetailFormType } from '../OrderDetailsForm/OrderDetailsForm';
 import { FeeCalculatorReturnType } from '../../utils/deliveryFeeCaculator';
 
@@ -20,14 +20,24 @@ const mockResult: FeeCalculatorReturnType = {
 };
 
 describe('FeeResult Component', () => {
+  // Snapshot test
+  it('renders correctly', () => {
+    const { asFragment } = render(<FeeResult />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  // Snapshot test
+  it('renders correctly with props', () => {
+    const { asFragment } = render(
+      <FeeResult orderDetails={mockOrderDetails} result={mockResult} />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   // Test for rendering with no props
   it('renders with default message when no props are provided', () => {
     render(<FeeResult />);
-    expect(
-      screen.getByText(
-        'Fill in order details and press calculate to get result.'
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText(DEFAULT_MESSAGE)).toBeInTheDocument();
   });
 
   // Test for rendering with props
@@ -70,6 +80,7 @@ describe('FeeResult Component', () => {
 
     const tooltip = screen.getByTestId('tooltip');
     expect(tooltip).toBeInTheDocument();
+    expect(tooltip).toBeVisible();
   });
 
   it('displays tooltip with fee calculation rules on focus', () => {

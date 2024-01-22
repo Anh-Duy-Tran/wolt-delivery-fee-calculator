@@ -1,6 +1,6 @@
+import { expect, it, describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { Card } from './Card'; // Adjust the import path according to your file structure
+import { Card } from '.';
 
 describe('Card Component', () => {
   // Snapshot test

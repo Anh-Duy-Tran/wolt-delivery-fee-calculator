@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InfoTooltip Component > renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="relative"
+  >
+    <div
+      class="peer absolute bottom-0 right-0 rounded ring-wolt-blue focus:ring-2"
+      tabindex="0"
+    >
+      Tooltip
+    </div>
+    <div
+      class="absolute right-0 mt-2 w-[400px] scale-75 rounded-md bg-slate-700 p-3 px-5 pl-7 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
+      data-testid="tooltip"
+    >
+      <p>
+        Tooltip content
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
