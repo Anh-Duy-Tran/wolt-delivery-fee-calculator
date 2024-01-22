@@ -202,6 +202,30 @@ describe('Delivery Fee Calculator', () => {
         findRuleByTypeAndAssertAmount(result, 'maxFee', '');
       });
     });
+    describe('Throw on invalid order details', () => {
+      it('invalid cartValue', () => {
+        let orderDetails = createOrderDetails(-20, 10000, 25);
+        expect(() => deliveryFeeCaculator(orderDetails)).toThrow();
+        orderDetails = createOrderDetails(0, 10000, 25);
+        expect(() => deliveryFeeCaculator(orderDetails)).toThrow();
+      });
+      it('invalid distance', () => {
+        let orderDetails = createOrderDetails(20, 1000.5, 25);
+        expect(() => deliveryFeeCaculator(orderDetails)).toThrow();
+        orderDetails = createOrderDetails(20, 0, 25);
+        expect(() => deliveryFeeCaculator(orderDetails)).toThrow();
+        orderDetails = createOrderDetails(20, -100, 25);
+        expect(() => deliveryFeeCaculator(orderDetails)).toThrow();
+      });
+      it('invalid number of items', () => {
+        let orderDetails = createOrderDetails(20, 1000, 10.5);
+        expect(() => deliveryFeeCaculator(orderDetails)).toThrow();
+        orderDetails = createOrderDetails(20, 1000, 0);
+        expect(() => deliveryFeeCaculator(orderDetails)).toThrow();
+        orderDetails = createOrderDetails(20, 1000, -4);
+        expect(() => deliveryFeeCaculator(orderDetails)).toThrow();
+      });
+    });
     describe('Correct calculate fee', () => {
       it('for order value from 200 euro, free delivery applied', () => {
         const orderDetails = createOrderDetails(200, 1234, 10);
@@ -229,14 +253,15 @@ describe('Delivery Fee Calculator', () => {
         findRuleByTypeAndAssertAmount(result, 'deliveryDistance', '3.00€');
         findRuleByTypeAndAssertAmount(result, 'itemCount', '9.20€');
       });
-      it('for order 100 euro, 1234m, 10 items, normal hour', () => {
-        const orderDetails = createOrderDetails(100, 1234, 10);
+      it('for order 100 euro, 1234m, 10 items, rush hour', () => {
+        const orderDetails = createOrderDetails(100, 1234, 10, RUSH_HOUR_TIME);
         const result = deliveryFeeCaculator(orderDetails);
 
-        expect(result.deliveryFee).toBe(6);
-        expect(result.subjectedRules.length).toBe(2);
+        expect(result.deliveryFee).toBe(7.2);
+        expect(result.subjectedRules.length).toBe(3);
         findRuleByTypeAndAssertAmount(result, 'itemCount', '3.00€');
         findRuleByTypeAndAssertAmount(result, 'deliveryDistance', '3.00€');
+        findRuleByTypeAndAssertAmount(result, 'rushHour', '1.20€');
       });
     });
   });
