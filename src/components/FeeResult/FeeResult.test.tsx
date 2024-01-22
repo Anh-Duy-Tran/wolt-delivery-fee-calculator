@@ -14,8 +14,8 @@ const mockOrderDetails: OrderDetailFormType = {
 const mockResult: FeeCalculatorReturnType = {
   deliveryFee: 15,
   subjectedRules: [
-    { message: 'Base fee', amount: '5€' },
-    { message: 'Distance fee', amount: '10€' },
+    { type: 'baseFee', message: 'Base fee', amount: '5€' },
+    { type: 'distanceFee', message: 'Distance fee', amount: '10€' },
   ],
 };
 
