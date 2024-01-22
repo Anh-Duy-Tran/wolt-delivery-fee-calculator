@@ -11,11 +11,11 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "test": "vitest",
-    "test:ci" : "vitest run",
+    "test:ci": "vitest run",
     "test:coverage": "vitest --coverage",
     "cy": "cypress open --config baseUrl=http://localhost:5173/",
     "cy:run": "cypress run --config baseUrl=http://localhost:4173/",
-    "cy:ci" : "start-server-and-test preview http://localhost:4173/ cy:run"
+    "cy:ci": "start-server-and-test preview http://localhost:4173/ cy:run"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

@@ -33,7 +33,7 @@ function App() {
               orderDetails={calculatedOrderDetails}
               result={feeResult}
             />
-            <Card className='flex flex-col gap-4'>
+            <Card className="flex flex-col gap-4">
               <h2>INTRODUCTION</h2>
               <div>
                 <a href="https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation">
