@@ -63,7 +63,7 @@ exports[`FeeResult Component > renders correctly with props 1`] = `
         Delivery price:
       </h3>
       <h1
-        class="indented from-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent"
+        class="indented bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
         data-testid="fee"
       >
         15.00€
