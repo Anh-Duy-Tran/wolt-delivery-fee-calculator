@@ -21,7 +21,7 @@ function App() {
     <div id="background">
       <div className="flex h-full w-full flex-col items-center overflow-auto pt-[30px]">
         <h1>DELIVERY FEE CALCULATION</h1>
-        <div className="mt-8 grid w-[70%] max-w-[1450px] grid-cols-1 gap-4 tablet:grid-cols-2">
+        <div className="m-8 grid w-[70%] max-w-[1450px] grid-cols-1 gap-4 tablet:grid-cols-2">
           <div>
             <OrderDetailsForm
               saveCalculatedOrderDetails={saveCalculatedOrderDetails}
@@ -33,11 +33,13 @@ function App() {
               orderDetails={calculatedOrderDetails}
               result={feeResult}
             />
-            <Card>
+            <Card className='flex flex-col gap-4'>
               <h2>INTRODUCTION</h2>
-              <a href="https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation">
-                <img src="https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation/graph/badge.svg?token=CJQV0NZ99N" />
-              </a>
+              <div>
+                <a href="https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation">
+                  <img src="https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation/graph/badge.svg?token=CJQV0NZ99N" />
+                </a>
+              </div>
             </Card>
           </div>
         </div>

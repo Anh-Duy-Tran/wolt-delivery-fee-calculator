@@ -4,14 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "test": "vitest",
-    "test:coverage": "vitest --coverage"
+    "test:ci" : "vitest run",
+    "test:coverage": "vitest --coverage",
+    "cy": "cypress open --config baseUrl=http://localhost:5173/",
+    "cy:run": "cypress run --config baseUrl=http://localhost:4173/",
+    "cy:ci" : "start-server-and-test preview http://localhost:4173/ cy:run"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -31,16 +35,19 @@
     "@vitejs/plugin-react-swc": "^3.5.0",
     "@vitest/coverage-v8": "^1.2.1",
     "autoprefixer": "^10.4.17",
+    "cypress": "^13.6.3",
+    "cypress-vite": "^1.5.0",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "jsdom": "^24.0.0",
     "postcss": "^8.4.33",
     "prettier-plugin-tailwindcss": "^0.5.11",
+    "start-server-and-test": "^2.0.3",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8",
+    "vite": "^5.0.12",
     "vitest": "^1.2.1"
   }
 }
