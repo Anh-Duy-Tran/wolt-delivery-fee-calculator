@@ -35,6 +35,9 @@ function App() {
             />
             <Card>
               <h2>INTRODUCTION</h2>
+              <a href="https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation">
+                <img src="https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation/graph/badge.svg?token=CJQV0NZ99N" />
+              </a>
             </Card>
           </div>
         </div>

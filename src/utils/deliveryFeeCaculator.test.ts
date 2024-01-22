@@ -1,13 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import {
+  FeeCalculatorReturnType,
   additionalFeeRules,
   deliveryFeeCaculator,
   feeBasedRules,
   freeDeliveryRules,
 } from './deliveryFeeCaculator';
 
-const NORMAL_TIME = new Date('2024-01-22T10:00:00Z');
-const RUSH_HOUR_TIME = new Date('2024-01-26T16:00:00Z'); // A Friday during rush hour
+const NORMAL_TIME = new Date(2024, 0, 22, 10, 0, 0);
+const RUSH_HOUR_TIME = new Date(2024, 0, 26, 16, 0, 0); // A Friday during rush hour
 
 // Helper function to create order details
 function createOrderDetails(
@@ -47,6 +48,18 @@ function getFeeBasedRuleFunc(type: string) {
     throw new TypeError(`Cannot find rule type ${type}`);
   }
   return ruleFunction;
+}
+
+function findRuleByTypeAndAssertAmount(
+  result: FeeCalculatorReturnType,
+  type: string,
+  amount: string
+) {
+  const itemCountRule = result.subjectedRules.find(
+    (rule) => rule.type === type
+  );
+  expect(itemCountRule).toBeDefined();
+  expect(itemCountRule?.amount).toBe(amount);
 }
 
 describe('Delivery Fee Calculator', () => {
@@ -130,15 +143,6 @@ describe('Delivery Fee Calculator', () => {
     });
   });
 
-  // Maximum Delivery Fee
-  describe('Maximum Delivery Fee', () => {
-    it('does not exceed 15€', () => {
-      const orderDetails = createOrderDetails(20, 10000, 20); // large order
-      const result = deliveryFeeCaculator(orderDetails);
-      expect(result.deliveryFee).toBeLessThanOrEqual(15);
-    });
-  });
-
   // Free Delivery for High-Value Orders
   describe('Free Delivery for High-Value Orders', () => {
     const highValueFreeDeliveryCondition =
@@ -167,6 +171,73 @@ describe('Delivery Fee Calculator', () => {
       const orderDetails = createOrderDetails(20, 1000, 1, RUSH_HOUR_TIME);
       const result = rushHourFunction(orderDetails, 2);
       expect(result).toBeCloseTo(0.4);
+    });
+    it('not increases fee during normal day', () => {
+      const orderDetails = createOrderDetails(20, 1000, 1, NORMAL_TIME);
+      const result = rushHourFunction(orderDetails, 2);
+      expect(result).toBe(0);
+    });
+    it('not increases fee before 3PM Friday', () => {
+      const justBefore3PM = new Date(2024, 0, 26, 14, 59, 59);
+      const orderDetails = createOrderDetails(20, 1000, 1, justBefore3PM);
+      const result = rushHourFunction(orderDetails, 2);
+      expect(result).toBe(0);
+    });
+    it('not increases fee after 7PM Friday', () => {
+      const justAfter7PM = new Date(2024, 0, 26, 19, 0, 1);
+      const orderDetails = createOrderDetails(20, 1000, 1, justAfter7PM);
+      const result = rushHourFunction(orderDetails, 2);
+      expect(result).toBe(0);
+    });
+  });
+
+  // Maximum Delivery Fee
+  describe('All rules combine', () => {
+    describe('Maximum Delivery Fee', () => {
+      it('does not exceed 15€', () => {
+        const orderDetails = createOrderDetails(20, 10000, 25);
+        const result = deliveryFeeCaculator(orderDetails);
+
+        expect(result.deliveryFee).toBe(15);
+        findRuleByTypeAndAssertAmount(result, 'maxFee', '');
+      });
+    });
+    describe('Correct calculate fee', () => {
+      it('for order value from 200 euro, free delivery applied', () => {
+        const orderDetails = createOrderDetails(200, 1234, 10);
+        const result = deliveryFeeCaculator(orderDetails);
+
+        expect(result.deliveryFee).toBe(0);
+        // only one free delivery rule should be applied
+        expect(result.subjectedRules.length).toBe(1);
+        findRuleByTypeAndAssertAmount(result, 'freeDelivery', 'FREE');
+      });
+      it('for order 100 euro, 2m, 2 items, normal hour', () => {
+        const orderDetails = createOrderDetails(100, 2, 2);
+        const result = deliveryFeeCaculator(orderDetails);
+
+        expect(result.deliveryFee).toBe(2);
+        expect(result.subjectedRules.length).toBe(1);
+        findRuleByTypeAndAssertAmount(result, 'deliveryDistance', '2.00€');
+      });
+      it('for order 100 euro, 1001m, 20 items, normal hour', () => {
+        const orderDetails = createOrderDetails(100, 1001, 20);
+        const result = deliveryFeeCaculator(orderDetails);
+
+        expect(result.deliveryFee).toBe(12.2);
+        expect(result.subjectedRules.length).toBe(2);
+        findRuleByTypeAndAssertAmount(result, 'deliveryDistance', '3.00€');
+        findRuleByTypeAndAssertAmount(result, 'itemCount', '9.20€');
+      });
+      it('for order 100 euro, 1234m, 10 items, normal hour', () => {
+        const orderDetails = createOrderDetails(100, 1234, 10);
+        const result = deliveryFeeCaculator(orderDetails);
+
+        expect(result.deliveryFee).toBe(6);
+        expect(result.subjectedRules.length).toBe(2);
+        findRuleByTypeAndAssertAmount(result, 'itemCount', '3.00€');
+        findRuleByTypeAndAssertAmount(result, 'deliveryDistance', '3.00€');
+      });
     });
   });
 });

@@ -27,6 +27,7 @@ type FeeBasedRuleType = {
 export type FeeCalculatorReturnType = {
   deliveryFee: number;
   subjectedRules: {
+    type: string;
     message: string;
     amount: string;
   }[];
@@ -137,9 +138,11 @@ export function deliveryFeeCaculator(
   };
 
   for (const rule of freeDeliveryRules) {
-    if (rule.condition(orderDetails)) {
+    const { type, message, condition } = rule;
+    if (condition(orderDetails)) {
       deliveryFeeResponse.subjectedRules.push({
-        message: rule.message,
+        type,
+        message,
         amount: 'FREE',
       });
 
@@ -149,27 +152,31 @@ export function deliveryFeeCaculator(
   }
 
   for (const rule of additionalFeeRules) {
+    const { type, message, calculateAdditionalFee } = rule;
     // Get the possible surcharge based only on the order details
-    const fee = rule.calculateAdditionalFee(orderDetails);
+    const fee = calculateAdditionalFee(orderDetails);
     if (fee) {
       deliveryFeeResponse.deliveryFee += fee;
       deliveryFeeResponse.subjectedRules.push({
-        message: rule.message,
+        type,
+        message,
         amount: `${fee.toFixed(2)}€`,
       });
     }
   }
 
   for (const rule of feeBasedRules) {
+    const { type, message, calculateFeeBasedAdditionalFee } = rule;
     // Get the possible surcharge based on the order details and the current calculated fee
-    const fee = rule.calculateFeeBasedAdditionalFee(
+    const fee = calculateFeeBasedAdditionalFee(
       orderDetails,
       deliveryFeeResponse.deliveryFee
     );
     if (fee) {
       deliveryFeeResponse.deliveryFee += fee;
       deliveryFeeResponse.subjectedRules.push({
-        message: rule.message,
+        type,
+        message,
         amount: `${fee.toFixed(2)}€`,
       });
     }
@@ -179,6 +186,7 @@ export function deliveryFeeCaculator(
   if (deliveryFeeResponse.deliveryFee > MAX_DELIVERY_FEE) {
     deliveryFeeResponse.deliveryFee = MAX_DELIVERY_FEE;
     deliveryFeeResponse.subjectedRules.push({
+      type: 'maxFee',
       message: `Maximum delivery fee of ${MAX_DELIVERY_FEE}€ reached`,
       amount: '',
     });
