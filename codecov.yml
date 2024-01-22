@@ -1,0 +1,3 @@
+ignore:
+  - 'src/postcss.config.js'
+  - 'src/tailwind.config.js'
