@@ -1,6 +1,6 @@
 describe('Whole application end-to-end test suite', () => {
   /* ==== Test Created with Cypress Studio ==== */
-  it('calculate the right fee with the fee component in the tooltip', function () {
+  it('calculate the right fee and with the right fee component in the tooltip', function () {
     /* ==== Generated with Cypress Studio ==== */
     cy.visit('/');
     cy.get('[data-testid="cartValue"]').clear();

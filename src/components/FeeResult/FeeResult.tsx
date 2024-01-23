@@ -30,7 +30,7 @@ export function FeeResult({ orderDetails, result }: FeeResultProps) {
                 {`• Number of items: ${orderDetails.numberOfItems}`}
               </p>
               <p data-testid={'submittedOrderTime'}>
-                {`• Time: ${orderDetails.orderTime.toDateString()} at ${orderDetails.orderTime.toLocaleTimeString()}`}
+                {`• Time: ${orderDetails.orderTime.toDateString()} at ${orderDetails.orderTime.toLocaleTimeString([], { hour12: false })}`}
               </p>
             </div>
           </div>
