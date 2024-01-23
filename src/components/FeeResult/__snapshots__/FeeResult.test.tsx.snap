@@ -72,31 +72,35 @@ exports[`FeeResult Component > renders correctly with props 1`] = `
           15.00€
         </h1>
         <div
-          class="group relative rounded ring-wolt-blue focus:ring-2"
-          data-testid="info-icon"
-          tabindex="0"
+          class="relative"
         >
-          <svg
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.5 16.8v-1.2h1v1.2h-1zm0-9.6v7.2h1V7.2h-1z"
-            />
-            <path
-              clip-rule="evenodd"
-              d="M12 21.6a9.6 9.6 0 0 0 9.6-9.6 9.6 9.6 0 1 0-19.2 0 9.6 9.6 0 0 0 9.6 9.6zm0-1a8.6 8.6 0 1 0 0-17.2 8.6 8.6 0 0 0 0 17.2z"
-              fill-rule="evenodd"
-            />
-          </svg>
           <div
-            class="absolute right-0 mt-2 w-[400px] scale-75 rounded-md bg-slate-700 p-3 px-5 pl-7 text-sm text-white opacity-0 transition group-hover:scale-100 group-hover:opacity-100 group-focus:scale-100 group-focus:opacity-100"
+            class="peer rounded ring-wolt-blue focus:ring-2"
+            data-testid="info-icon"
+            tabindex="0"
+          >
+            <svg
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.5 16.8v-1.2h1v1.2h-1zm0-9.6v7.2h1V7.2h-1z"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M12 21.6a9.6 9.6 0 0 0 9.6-9.6 9.6 9.6 0 1 0-19.2 0 9.6 9.6 0 0 0 9.6 9.6zm0-1a8.6 8.6 0 1 0 0-17.2 8.6 8.6 0 0 0 0 17.2z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <div
+            class="absolute right-0 mt-2 w-[350px] scale-75 rounded-md bg-slate-700 p-3 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
             data-testid="tooltip"
           >
             <ul
-              class="flex list-disc flex-col gap-2"
+              class="flex list-inside list-disc flex-col gap-2"
             >
               <li>
                 Base fee ( 5€ )

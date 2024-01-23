@@ -46,7 +46,7 @@ export function FeeResult({ orderDetails, result }: FeeResultProps) {
               <InfoTooltip
                 data-testid={'info-icon'}
                 tipContent={
-                  <ul className="flex list-disc flex-col gap-2">
+                  <ul className="flex list-inside list-disc flex-col gap-2">
                     {result.subjectedRules.map((rule, i) => (
                       <li
                         key={i}

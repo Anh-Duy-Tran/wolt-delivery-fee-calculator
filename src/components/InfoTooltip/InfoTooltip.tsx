@@ -12,18 +12,20 @@ export function InfoTooltip({
   ...props
 }: InfoTooltipProps) {
   return (
-    <div
-      tabIndex={0}
-      className={twMerge(
-        className,
-        'group relative rounded ring-wolt-blue focus:ring-2'
-      )}
-      {...props}
-    >
-      {children}
+    <div className="relative">
+      <div
+        tabIndex={0}
+        className={twMerge(
+          className,
+          'peer rounded ring-wolt-blue focus:ring-2'
+        )}
+        {...props}
+      >
+        {children}
+      </div>
       <div
         data-testid={'tooltip'}
-        className="absolute right-0 mt-2 w-[400px] scale-75 rounded-md bg-slate-700 p-3 px-5 pl-7 text-sm text-white opacity-0 transition group-hover:scale-100 group-hover:opacity-100 group-focus:scale-100 group-focus:opacity-100"
+        className="absolute right-0 mt-2 w-[350px] scale-75 rounded-md bg-slate-700 p-3 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
       >
         {tipContent}
       </div>

@@ -56,7 +56,7 @@ describe('Whole application end-to-end test suite', () => {
     cy.get('[data-testid="tooltip"]').should('not.be.visible');
 
     // hover on the info icon
-    cy.get('[data-testid="tooltip"]').realHover();
+    cy.get('[data-testid="info-icon"]').realHover();
     cy.get('[data-testid="tooltip"]').should('be.visible');
     // move hover to other element, should cause the tool box to be invisible
     cy.get('[data-testid="calculateFee"]').realHover();

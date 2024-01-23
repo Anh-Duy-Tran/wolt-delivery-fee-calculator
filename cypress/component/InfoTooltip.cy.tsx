@@ -11,7 +11,7 @@ describe('InfoTooltip Component', () => {
       .should('not.have.css', 'opacity', '1')
       .should('not.have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)'); // tailwind equivalent of scale(1)
 
-    cy.get('.group').realHover();
+    cy.get('.peer').realHover();
 
     // Assert the tooltip styling changes
     cy.get('[data-testid="tooltip"]')
@@ -25,7 +25,7 @@ describe('InfoTooltip Component', () => {
       .should('not.have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)'); // tailwind equivalent of scale(1)
 
     // Trigger focus
-    cy.get('.group').focus();
+    cy.get('.peer').focus();
 
     // Assert the tooltip styling changes
     cy.get('[data-testid="tooltip"]')

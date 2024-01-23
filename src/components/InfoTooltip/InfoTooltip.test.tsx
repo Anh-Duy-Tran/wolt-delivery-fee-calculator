@@ -48,11 +48,9 @@ describe('InfoTooltip Component', () => {
       </InfoTooltip>
     );
 
-    expect(screen.getByTestId('info-icon')).toHaveClass('group');
+    expect(screen.getByTestId('info-icon')).toHaveClass('peer');
     expect(screen.getByTestId('tooltip')).toHaveClass('opacity-0');
-    expect(screen.getByTestId('tooltip')).toHaveClass(
-      'group-hover:opacity-100'
-    );
+    expect(screen.getByTestId('tooltip')).toHaveClass('peer-hover:opacity-100');
   });
 
   it('would shows tooltip content on focus', () => {
@@ -65,10 +63,8 @@ describe('InfoTooltip Component', () => {
       </InfoTooltip>
     );
 
-    expect(screen.getByTestId('info-icon')).toHaveClass('group');
+    expect(screen.getByTestId('info-icon')).toHaveClass('peer');
     expect(screen.getByTestId('tooltip')).toHaveClass('opacity-0');
-    expect(screen.getByTestId('tooltip')).toHaveClass(
-      'group-focus:opacity-100'
-    );
+    expect(screen.getByTestId('tooltip')).toHaveClass('peer-focus:opacity-100');
   });
 });
