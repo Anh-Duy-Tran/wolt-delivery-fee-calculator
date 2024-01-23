@@ -53,7 +53,7 @@ describe('FeeResult Component', () => {
       '• Number of items: 3'
     );
     expect(screen.getByTestId('submittedOrderTime')).toHaveTextContent(
-      `• Time: ${mockOrderDetails.orderTime.toDateString()} at ${mockOrderDetails.orderTime.toLocaleTimeString()}`
+      `• Time: ${mockOrderDetails.orderTime.toDateString()} at ${mockOrderDetails.orderTime.toLocaleTimeString([], { hour12: false })}`
     );
     expect(screen.getByTestId('fee')).toHaveTextContent('15.00€');
   });

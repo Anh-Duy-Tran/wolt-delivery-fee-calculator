@@ -52,7 +52,7 @@ exports[`FeeResult Component > renders correctly with props 1`] = `
         <p
           data-testid="submittedOrderTime"
         >
-          • Time: Sun Jan 21 2024 at 12:00:00 PM
+          • Time: Sun Jan 21 2024 at 12:00:00
         </p>
       </div>
     </div>
