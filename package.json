@@ -17,7 +17,9 @@
     "cy:run": "cypress run --component --config baseUrl=http://localhost:5173/",
     "cy:run-local": "start-server-and-test dev 5173 cy:run",
     "cy:run-ci": "cypress run --config baseUrl=http://localhost:4173/",
-    "cy:ci": "start-server-and-test preview 4173 cy:run-ci"
+    "cy-component:run-ci": "cypress run --component --config baseUrl=http://localhost:4173/",
+    "cy:ci": "start-server-and-test preview 4173 cy:run-ci",
+    "cy-component:ci": "start-server-and-test preview 4173 cy-component:run-ci"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

@@ -91,19 +91,25 @@ jobs:
         run: npm install
 
       - name: Run End to End Testing
-        uses: cypress-io/github-action@v6
-        with:
-          build: npm run build
-          start: npm run preview
-          browser: chrome
-        env:
-          base-url: http://localhost:4173/
+        uses: npm run cy:ci
 
       - name: Run Component Testing
-        uses: cypress-io/github-action@v6
-        with:
-          # we have already installed everything
-          install: false
-          component: true
-        env:
-          base-url: http://localhost:4173/
+        uses: npm run cy-component:ci
+
+      # - name: Run End to End Testing
+      #   uses: cypress-io/github-action@v6
+      #   with:
+      #     build: npm run build
+      #     start: npm run preview
+      #     browser: chrome
+      #   env:
+      #     base-url: http://localhost:4173/
+
+      # - name: Run Component Testing
+      #   uses: cypress-io/github-action@v6
+      #   with:
+      #     # we have already installed everything
+      #     install: false
+      #     component: true
+      #   env:
+      #     base-url: http://localhost:4173/
