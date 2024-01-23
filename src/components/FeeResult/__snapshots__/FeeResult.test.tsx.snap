@@ -62,17 +62,17 @@ exports[`FeeResult Component > renders correctly with props 1`] = `
       <h3>
         Delivery price:
       </h3>
-      <h1
-        class="indented bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-        data-testid="fee"
-      >
-        15.00€
-      </h1>
       <div
-        class="relative"
+        class="flex items-end justify-between"
       >
+        <h1
+          class="indented bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent"
+          data-testid="fee"
+        >
+          15.00€
+        </h1>
         <div
-          class="peer absolute bottom-0 right-0 rounded ring-wolt-blue focus:ring-2"
+          class="group relative rounded ring-wolt-blue focus:ring-2"
           data-testid="info-icon"
           tabindex="0"
         >
@@ -91,21 +91,21 @@ exports[`FeeResult Component > renders correctly with props 1`] = `
               fill-rule="evenodd"
             />
           </svg>
-        </div>
-        <div
-          class="absolute right-0 mt-2 w-[400px] scale-75 rounded-md bg-slate-700 p-3 px-5 pl-7 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
-          data-testid="tooltip"
-        >
-          <ul
-            class="flex list-disc flex-col gap-2"
+          <div
+            class="absolute right-0 mt-2 w-[400px] scale-75 rounded-md bg-slate-700 p-3 px-5 pl-7 text-sm text-white opacity-0 transition group-hover:scale-100 group-hover:opacity-100 group-focus:scale-100 group-focus:opacity-100"
+            data-testid="tooltip"
           >
-            <li>
-              Base fee ( 5€ )
-            </li>
-            <li>
-              Distance fee ( 10€ )
-            </li>
-          </ul>
+            <ul
+              class="flex list-disc flex-col gap-2"
+            >
+              <li>
+                Base fee ( 5€ )
+              </li>
+              <li>
+                Distance fee ( 10€ )
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

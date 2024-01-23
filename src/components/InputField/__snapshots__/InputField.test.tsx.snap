@@ -11,7 +11,7 @@ exports[`InputField Component > renders correctly 1`] = `
         data-testid="input-field"
       />
       <label
-        class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 
+        class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
         select-none opacity-60 transition-all peer-focus:-translate-y-3 peer-focus:scale-[65%] false"
       >
         Test Label
