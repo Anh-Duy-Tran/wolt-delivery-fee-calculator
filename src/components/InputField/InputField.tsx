@@ -48,7 +48,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             {...props}
           />
           <label
-            className={`linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 
+            className={`linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
         select-none opacity-60 transition-all peer-focus:-translate-y-3 peer-focus:scale-[65%] ${
           shouldCollpaseLabel && '-translate-y-3 scale-[65%]'
         }`}
@@ -58,7 +58,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
         </div>
         {errorMessage ? (
           <p
-            data-testid={'errorMessage'}
+            data-testid={`${props.name ? `${props.name}ErrorMessage` : `errorMessage`}`}
             className="pl-3 pt-[2px] text-sm text-red-500"
           >
             {errorMessage}

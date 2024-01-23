@@ -80,7 +80,7 @@ export function OrderDetailsForm({
           type="datetime-local"
           placeholder="DD.MM.YYYY"
         />
-        <Button className="mt-2" type="submit">
+        <Button data-testid={'calculateFee'} className="mt-2" type="submit">
           CALCULATE FEE
         </Button>
       </form>

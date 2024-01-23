@@ -14,11 +14,14 @@
     "test:ci": "vitest run",
     "test:coverage": "vitest --coverage",
     "cy": "cypress open --config baseUrl=http://localhost:5173/",
-    "cy:run": "cypress run --config baseUrl=http://localhost:4173/",
-    "cy:ci": "start-server-and-test preview http://localhost:4173/ cy:run"
+    "cy:run": "cypress run --component --config baseUrl=http://localhost:5173/",
+    "cy:run-local": "start-server-and-test dev 5173 cy:run",
+    "cy:run-ci": "cypress run --config baseUrl=http://localhost:4173/",
+    "cy:ci": "start-server-and-test preview 4173 cy:run-ci"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "cypress-real-events": "^1.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",

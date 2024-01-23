@@ -36,26 +36,28 @@ export function FeeResult({ orderDetails, result }: FeeResultProps) {
           </div>
           <div className="relative">
             <h3>Delivery price:</h3>
-            <h1
-              data-testid={'fee'}
-              className="indented bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-            >
-              {`${result.deliveryFee.toFixed(2)}€`}
-            </h1>
-            <InfoTooltip
-              data-testid={'info-icon'}
-              tipContent={
-                <ul className="flex list-disc flex-col gap-2">
-                  {result.subjectedRules.map((rule, i) => (
-                    <li
-                      key={i}
-                    >{`${rule.message} ${rule.amount !== '' ? `( ${rule.amount} )` : ''}`}</li>
-                  ))}
-                </ul>
-              }
-            >
-              {infoIcon}
-            </InfoTooltip>
+            <div className="flex items-end justify-between">
+              <h1
+                data-testid={'fee'}
+                className="indented bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent"
+              >
+                {`${result.deliveryFee.toFixed(2)}€`}
+              </h1>
+              <InfoTooltip
+                data-testid={'info-icon'}
+                tipContent={
+                  <ul className="flex list-disc flex-col gap-2">
+                    {result.subjectedRules.map((rule, i) => (
+                      <li
+                        key={i}
+                      >{`${rule.message} ${rule.amount !== '' ? `( ${rule.amount} )` : ''}`}</li>
+                    ))}
+                  </ul>
+                }
+              >
+                {infoIcon}
+              </InfoTooltip>
+            </div>
           </div>
         </>
       ) : (

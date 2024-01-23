@@ -21,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
   },
-  "include": ["cypress", "src"],
+  "include": ["cypress", "src", "cypress-real-events"],
   "references": [{ "path": "./tsconfig.node.json" }],
 }
