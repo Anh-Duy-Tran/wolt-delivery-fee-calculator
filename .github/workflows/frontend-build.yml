@@ -93,7 +93,7 @@ jobs:
           npm run build
 
       - name: Run End to End Testing
-        uses: npm run cy:ci
+        run: npm run cy:ci
 
       - name: Run Component Testing
-        uses: npm run cy-component:ci
+        run: npm run cy-component:ci
