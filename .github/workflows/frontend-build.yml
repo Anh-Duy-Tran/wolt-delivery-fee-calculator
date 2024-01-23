@@ -87,8 +87,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
 
       - name: Run End to End Testing
         uses: npm run cy:ci
