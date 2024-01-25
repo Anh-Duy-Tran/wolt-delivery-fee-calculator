@@ -96,7 +96,7 @@ exports[`FeeResult Component > renders correctly with props 1`] = `
             </svg>
           </div>
           <div
-            class="absolute z-50 right-0 mt-2 w-[350px] scale-75 rounded-md bg-slate-700 p-3 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
+            class="absolute right-0 z-50 mt-2 w-[350px] scale-75 rounded-md bg-slate-700 p-3 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
             data-testid="tooltip"
           >
             <ul
