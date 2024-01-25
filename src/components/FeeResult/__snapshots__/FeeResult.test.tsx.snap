@@ -103,10 +103,10 @@ exports[`FeeResult Component > renders correctly with props 1`] = `
               class="flex list-inside list-disc flex-col gap-2"
             >
               <li>
-                Base fee ( 5€ )
+                Item count surcharge ( 5€ )
               </li>
               <li>
-                Distance fee ( 10€ )
+                Delivery distance surcharge ( 10€ )
               </li>
             </ul>
           </div>

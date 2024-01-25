@@ -2,7 +2,10 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { expect, it, describe } from 'vitest';
 import { DEFAULT_MESSAGE, FeeResult } from './FeeResult';
 import { OrderDetailFormType } from '../OrderDetailsForm/OrderDetailsForm';
-import { FeeCalculatorReturnType } from '../../utils/deliveryFeeCaculator';
+import {
+  DeliveryFeeRuleId,
+  FeeCalculatorReturnType,
+} from '../../utils/deliveryFeeCaculator';
 
 const mockOrderDetails: OrderDetailFormType = {
   cartValue: 100,
@@ -14,8 +17,16 @@ const mockOrderDetails: OrderDetailFormType = {
 const mockResult: FeeCalculatorReturnType = {
   deliveryFee: 15,
   subjectedRules: [
-    { type: 'baseFee', message: 'Base fee', amount: '5€' },
-    { type: 'distanceFee', message: 'Distance fee', amount: '10€' },
+    {
+      id: DeliveryFeeRuleId.SurchargeItemCount,
+      message: 'Item count surcharge',
+      amount: '5€',
+    },
+    {
+      id: DeliveryFeeRuleId.SurchargeDeliveryDistance,
+      message: 'Delivery distance surcharge',
+      amount: '10€',
+    },
   ],
 };
 
