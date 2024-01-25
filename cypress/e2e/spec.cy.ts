@@ -76,7 +76,7 @@ describe('Whole application end-to-end test suite', () => {
     /* ==== Generated with Cypress Studio ==== */
     cy.visit('/');
     cy.get('[data-testid="cartValue"]').click();
-    cy.get('body').click();
+    cy.get('[data-testid="cartValue"]').blur();
     cy.get('[data-testid="cartValueErrorMessage"]').should(
       'contain.text',
       'required'
@@ -103,7 +103,7 @@ describe('Whole application end-to-end test suite', () => {
     /* ==== Generated with Cypress Studio ==== */
     cy.visit('/');
     cy.get('[data-testid="deliveryDistance"]').click();
-    cy.get('body').click();
+    cy.get('[data-testid="deliveryDistance"]').blur();
     cy.get('[data-testid="deliveryDistanceErrorMessage"]').should(
       'contain.text',
       'required'
@@ -136,7 +136,7 @@ describe('Whole application end-to-end test suite', () => {
     /* ==== Generated with Cypress Studio ==== */
     cy.visit('/');
     cy.get('[data-testid="numberOfItems"]').click();
-    cy.get('body').click();
+    cy.get('[data-testid="numberOfItems"]').blur();
     cy.get('[data-testid="numberOfItemsErrorMessage"]').should(
       'contain.text',
       'required'
@@ -169,7 +169,7 @@ describe('Whole application end-to-end test suite', () => {
     /* ==== Generated with Cypress Studio ==== */
     cy.visit('/');
     cy.get('[data-testid="orderTime"]').click();
-    cy.get('body').click();
+    cy.get('[data-testid="orderTime"]').blur();
     cy.get('[data-testid="orderTimeErrorMessage"]').should(
       'contain.text',
       'valid time' // some error message that mention must be a valid time
