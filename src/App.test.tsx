@@ -8,7 +8,7 @@ describe('App Component', () => {
     expect(asFragment()).toMatchSnapshot();
   });
   it('should contains 3 card (form, result, introduction)', () => {
-    render(<App/>);
+    render(<App />);
     expect(screen.getAllByTestId('card').length).toBe(3);
   });
 });
