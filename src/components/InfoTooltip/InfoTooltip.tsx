@@ -25,7 +25,7 @@ export function InfoTooltip({
       </div>
       <div
         data-testid={'tooltip'}
-        className="absolute right-0 mt-2 w-[350px] scale-75 rounded-md bg-slate-700 p-3 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
+        className="absolute right-0 z-50 mt-2 w-[350px] scale-75 rounded-md bg-slate-700 p-3 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
       >
         {tipContent}
       </div>

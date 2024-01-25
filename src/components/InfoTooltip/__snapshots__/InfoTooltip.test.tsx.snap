@@ -12,7 +12,7 @@ exports[`InfoTooltip Component > renders correctly 1`] = `
       Tooltip
     </div>
     <div
-      class="absolute right-0 mt-2 w-[350px] scale-75 rounded-md bg-slate-700 p-3 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
+      class="absolute z-50 right-0 mt-2 w-[350px] scale-75 rounded-md bg-slate-700 p-3 text-sm text-white opacity-0 transition peer-hover:scale-100 peer-hover:opacity-100 peer-focus:scale-100 peer-focus:opacity-100"
       data-testid="tooltip"
     >
       <p>

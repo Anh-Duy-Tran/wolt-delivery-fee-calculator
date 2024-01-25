@@ -1,195 +1,231 @@
 import { OrderDetailFormType } from '../components/OrderDetailsForm/OrderDetailsForm';
+import {
+  calculateDeliveryDistanceSurcharge,
+  calculateNumberOfItemSurcharge,
+  calculateRushHourSurcharge,
+  calculateSmallOrderSurcharge,
+  eligibleForFreeDeliveryBasedOnCartValue,
+} from './ruleHelperFunctions';
 import { validationSchema } from './orderDetailsValidationSchema';
 
 export const MAX_DELIVERY_FEE = 15; // Euro
 
-type AdditionalFeeRuleType = {
-  type: string;
-  message: string;
-  calculateAdditionalFee: (orderDetails: OrderDetailFormType) => number;
-};
+export enum DeliveryFeeRuleId {
+  // Free delivery rules
+  FreeDeliveryCartValueBased = 'freeDeliveryCartValueBased',
 
-type FreeDeliveryRuleType = {
-  type: string;
-  message: string;
-  condition: (orderDetails: OrderDetailFormType) => boolean;
-};
+  // Surcharge rule
+  SurchargeSmallOrder = 'surchargeSmallOrder',
+  SurchargeDeliveryDistance = 'surchargeDeliveryDistance',
+  SurchargeItemCount = 'surchargeItemCount',
+  SurchargeRushHour = 'rushHour',
 
-type FeeBasedRuleType = {
-  type: string;
+  // Other rule
+  MaxFee = 'maxFee',
+}
+
+type FeeAdjustmentResult =
+  | { isRuleApplied: true; newFee: number; feeChangeAmount?: number }
+  | { isRuleApplied: false };
+
+type DeliveryFeeRuleType = {
+  /**
+   * A short message describe the rule to the client
+   */
   message: string;
-  calculateFeeBasedAdditionalFee: (
-    orderDetails: OrderDetailFormType,
+  /**
+   * Set to True if the chain of responsibilities should end if this particular rule is applied
+   */
+  shouldTerminateCalculationIfApplied?: boolean;
+  /**
+   *
+   * @param requestedOrderDetails the requested Order details object
+   * @param currentFee the current calculated delivery fee
+   * @returns fee adjustment result object (type FeeAdjustmentResult)
+   */
+  getFeeAdjustment: (
+    requestedOrderDetails: OrderDetailFormType,
     currentFee: number
-  ) => number;
+  ) => FeeAdjustmentResult;
 };
 
 export type FeeCalculatorReturnType = {
+  /**
+   * The calculated delivery fee
+   */
   deliveryFee: number;
+  /**
+   * Array of object that stores the information about the applied rules
+   */
   subjectedRules: {
-    type: string;
+    id: DeliveryFeeRuleId;
     message: string;
     amount: string;
   }[];
 };
 
-export const additionalFeeRules: AdditionalFeeRuleType[] = [
-  {
-    type: 'smallOrder',
+export type DeliveryFeeRulesMapType = {
+  [key in DeliveryFeeRuleId]: DeliveryFeeRuleType;
+};
+
+const RULE_NOT_APPLY: FeeAdjustmentResult = {
+  isRuleApplied: false,
+};
+
+export const deliveryFeeRulesMap: DeliveryFeeRulesMapType = {
+  [DeliveryFeeRuleId.FreeDeliveryCartValueBased]: {
+    message: 'Enjoy free delivery for order of 200€ or more.',
+    shouldTerminateCalculationIfApplied: true,
+    getFeeAdjustment: ({ cartValue }) =>
+      eligibleForFreeDeliveryBasedOnCartValue(cartValue)
+        ? {
+            isRuleApplied: true,
+            newFee: 0,
+          }
+        : RULE_NOT_APPLY,
+  },
+  [DeliveryFeeRuleId.SurchargeSmallOrder]: {
     message:
       'For orders under 10€, a small order surcharge equal to the difference up to 10€ will be added to your delivery fee.',
-    calculateAdditionalFee: ({ cartValue }) => {
-      const smallOrderThreshold = 10; // Euro
-
-      return Math.max(smallOrderThreshold - cartValue, 0);
+    getFeeAdjustment: ({ cartValue }, currentFee) => {
+      const surcharge = calculateSmallOrderSurcharge(cartValue);
+      return surcharge !== 0
+        ? {
+            isRuleApplied: true,
+            newFee: currentFee + surcharge,
+            feeChangeAmount: surcharge,
+          }
+        : RULE_NOT_APPLY;
     },
   },
-  {
-    type: 'deliveryDistance',
+  [DeliveryFeeRuleId.SurchargeDeliveryDistance]: {
     message:
       'Delivery fee: 2€ for the first 1km, plus 1€ for every additional 500m (minimum 1€ surcharge for distances over 1km).',
-    calculateAdditionalFee: ({ deliveryDistance }) => {
-      const fixPriceDistance = 1000; // Meter
-      const fixPrice = 2; // Euro
-      const distanceInterval = 500; // Meter
-      const pricePerInterval = 1; // Euro
-
-      return (
-        fixPrice +
-        Math.ceil(
-          Math.max(deliveryDistance - fixPriceDistance, 0) / distanceInterval
-        ) *
-          pricePerInterval
-      );
+    getFeeAdjustment: ({ deliveryDistance }, currentFee) => {
+      const surcharge = calculateDeliveryDistanceSurcharge(deliveryDistance);
+      return surcharge !== 0
+        ? {
+            isRuleApplied: true,
+            newFee: currentFee + surcharge,
+            feeChangeAmount: surcharge,
+          }
+        : RULE_NOT_APPLY;
     },
   },
-  {
-    type: 'itemCount',
+  [DeliveryFeeRuleId.SurchargeItemCount]: {
     message:
       'Orders with 5+ items incur a 50 cent surcharge per item, starting from the 5th item, and a 1,20€ bulk fee for more than 12 items.',
-    calculateAdditionalFee: ({ numberOfItems }) => {
-      const threshold = 4; // Number of Items
-      const bulkThreshold = 12; // Number of Items
-      const pricePerItem = 0.5; // Euro
-      const bulkPrice = 1.2; // Euro
-
-      let surcharge = 0; // Euro
-
-      if (numberOfItems > threshold) {
-        surcharge += (numberOfItems - threshold) * pricePerItem;
-      }
-
-      if (numberOfItems > bulkThreshold) {
-        surcharge += bulkPrice;
-      }
-
-      return surcharge;
+    getFeeAdjustment: ({ numberOfItems }, currentFee) => {
+      const surcharge = calculateNumberOfItemSurcharge(numberOfItems);
+      return surcharge !== 0
+        ? {
+            isRuleApplied: true,
+            newFee: currentFee + surcharge,
+            feeChangeAmount: surcharge,
+          }
+        : RULE_NOT_APPLY;
     },
   },
-];
-
-export const freeDeliveryRules: FreeDeliveryRuleType[] = [
-  {
-    type: 'freeDelivery',
-    message: 'Enjoy free delivery for order of 200€ or more.',
-    condition: ({ cartValue }) => {
-      const threshold = 200; //Euro
-
-      return cartValue >= threshold;
-    },
-  },
-];
-
-export const feeBasedRules: FeeBasedRuleType[] = [
-  {
-    type: 'rushHour',
+  [DeliveryFeeRuleId.SurchargeRushHour]: {
     message:
       'During Friday rush hours (3 - 7 PM Local Time Zone), delivery fees are increased by 1.2x.',
-    calculateFeeBasedAdditionalFee: (orderDetails, currentFee) => {
-      const rushDay = 5; // Friday
-      const lowerRushHour = 15; // 3PM or 15:00
-      const higherRushHour = 19; // 7PM or 19:00
-      const increaseFactor = 0.2; // 1.2 - 1 = 0.2 or 20% increase from the fee
-
-      const { orderTime } = orderDetails;
-      if (
-        orderTime.getDay() === rushDay &&
-        orderTime.getHours() >= lowerRushHour &&
-        orderTime.getHours() < higherRushHour
-      ) {
-        return currentFee * increaseFactor;
-      }
-
-      return 0;
+    getFeeAdjustment: ({ orderTime }, currentFee) => {
+      const surcharge = calculateRushHourSurcharge(orderTime, currentFee);
+      return surcharge !== 0
+        ? {
+            isRuleApplied: true,
+            newFee: currentFee + surcharge,
+            feeChangeAmount: surcharge,
+          }
+        : RULE_NOT_APPLY;
     },
   },
+  [DeliveryFeeRuleId.MaxFee]: {
+    message: `Maximum delivery fee of ${MAX_DELIVERY_FEE}€ reached`,
+    getFeeAdjustment: (_, currentFee) =>
+      currentFee > MAX_DELIVERY_FEE
+        ? {
+            isRuleApplied: true,
+            newFee: MAX_DELIVERY_FEE,
+          }
+        : RULE_NOT_APPLY,
+  },
+};
+
+const deliveryFeeRuleIdsInOrder: DeliveryFeeRuleId[] = [
+  // Rules that would terminate the calculation if applied should be run first
+  // Example: Free delivery Rule should run first
+  DeliveryFeeRuleId.FreeDeliveryCartValueBased,
+
+  // Normal surchage Rules
+  DeliveryFeeRuleId.SurchargeSmallOrder,
+  DeliveryFeeRuleId.SurchargeDeliveryDistance,
+  DeliveryFeeRuleId.SurchargeItemCount,
+
+  // Surcharge multiplier Rules should be run after all but before the maximum fee limit Rules
+  DeliveryFeeRuleId.SurchargeRushHour,
+
+  // Maximum fee limit Rules
+  DeliveryFeeRuleId.MaxFee,
 ];
 
+/**
+ * Calculates the delivery fee based on various rules.
+ * - Small order surcharge is added for orders less than 10€.
+ * - Delivery distance fee: 2€ for the first 1km, then 1€ for every additional 500m.
+ * - Item count surcharge: 50 cents per item for 5+ items; additional bulk fee for 12+ items.
+ * - Max fee cap at 15€.
+ * - Free delivery for orders 200€ and above.
+ * - Rush hour (Fri, 3-7 PM Local Time) fee increase by 1.2x.
+ *
+ * @param orderDetails The details of the order.
+ * @returns The calculated fee and applied rules.
+ */
 export function deliveryFeeCaculator(
   orderDetails: OrderDetailFormType
 ): FeeCalculatorReturnType {
+  // Validate the order details request object
   if (!validationSchema.isValidSync(orderDetails)) {
     throw new TypeError('Invalid Order Details');
   }
 
-  const deliveryFeeResponse: FeeCalculatorReturnType = {
+  let deliveryFeeResponse: FeeCalculatorReturnType = {
     deliveryFee: 0,
     subjectedRules: [],
   };
 
-  for (const rule of freeDeliveryRules) {
-    const { type, message, condition } = rule;
-    if (condition(orderDetails)) {
-      deliveryFeeResponse.subjectedRules.push({
-        type,
-        message,
-        amount: 'FREE',
-      });
+  // Loop through all the rules in an ordered matter
+  for (const ruleId of deliveryFeeRuleIdsInOrder) {
+    const rule = deliveryFeeRulesMap[ruleId];
+    const currentFee = deliveryFeeResponse.deliveryFee;
 
-      // Stop the calculation if any match of the free delivery rules
-      return deliveryFeeResponse;
+    const { message, getFeeAdjustment } = rule;
+    const feeAdjustment = getFeeAdjustment(orderDetails, currentFee);
+
+    if (feeAdjustment.isRuleApplied) {
+      // Modify response by construct new response object (the functional
+      // programming way, the alternative would be modifying the object in-place
+      // would technically be more efficient though it does not adhere to
+      // functional programming paradigms)
+      deliveryFeeResponse = {
+        deliveryFee: feeAdjustment.newFee,
+        subjectedRules: [
+          ...deliveryFeeResponse.subjectedRules,
+          {
+            id: ruleId,
+            message,
+            amount: feeAdjustment.feeChangeAmount
+              ? `${feeAdjustment.feeChangeAmount.toFixed(2)}€`
+              : '',
+          },
+        ],
+      };
+
+      if (rule.shouldTerminateCalculationIfApplied) {
+        // Terminate the calculation early, return the current response
+        return deliveryFeeResponse;
+      }
     }
-  }
-
-  for (const rule of additionalFeeRules) {
-    const { type, message, calculateAdditionalFee } = rule;
-    // Get the possible surcharge based only on the order details
-    const fee = calculateAdditionalFee(orderDetails);
-    if (fee) {
-      deliveryFeeResponse.deliveryFee += fee;
-      deliveryFeeResponse.subjectedRules.push({
-        type,
-        message,
-        amount: `${fee.toFixed(2)}€`,
-      });
-    }
-  }
-
-  for (const rule of feeBasedRules) {
-    const { type, message, calculateFeeBasedAdditionalFee } = rule;
-    // Get the possible surcharge based on the order details and the current calculated fee
-    const fee = calculateFeeBasedAdditionalFee(
-      orderDetails,
-      deliveryFeeResponse.deliveryFee
-    );
-    if (fee) {
-      deliveryFeeResponse.deliveryFee += fee;
-      deliveryFeeResponse.subjectedRules.push({
-        type,
-        message,
-        amount: `${fee.toFixed(2)}€`,
-      });
-    }
-  }
-
-  // Maximum fee rule
-  if (deliveryFeeResponse.deliveryFee > MAX_DELIVERY_FEE) {
-    deliveryFeeResponse.deliveryFee = MAX_DELIVERY_FEE;
-    deliveryFeeResponse.subjectedRules.push({
-      type: 'maxFee',
-      message: `Maximum delivery fee of ${MAX_DELIVERY_FEE}€ reached`,
-      amount: '',
-    });
   }
 
   return deliveryFeeResponse;

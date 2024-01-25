@@ -22,7 +22,7 @@ jobs:
           build: npm run build
           start: npm run preview
           wait-on: 'http://localhost:4173' # Waits for above
-          
+
           # Records to Cypress Cloud
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
