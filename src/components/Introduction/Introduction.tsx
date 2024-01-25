@@ -30,6 +30,23 @@ export function Introduction() {
           </a>
         </InfoTooltip>
       </div>
+      <div>
+        <p>
+          Integrated CI/CD pipelines with Codecov and Cypress badges display
+          test results live, ensuring reliability.
+        </p>
+        <br />
+        <img src="./intro-tooltip.gif" />
+        <p className="text-center">please try it out !</p>
+        <br />
+        <p>
+          My project does more than just calculate fees - it demystifies them.
+          Each fee component is clearly explained through interactive, reusable
+          tooltips, offering users insight into their delivery costs with just a
+          hover or click. I've also prioritized accessibility, making the app
+          easily navigable and understandable for all users.
+        </p>
+      </div>
     </Card>
   );
 }
