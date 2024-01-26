@@ -1,0 +1,12 @@
+# Dockerfile
+# .dockerignore
+# node_modules
+# README.md
+# dist
+# .git
+# .github
+**/node_modules/
+**/dist
+**/.git
+**/.coverage
+**/.coverage.*
