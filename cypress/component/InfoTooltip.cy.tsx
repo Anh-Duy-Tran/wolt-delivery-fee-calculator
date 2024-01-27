@@ -1,5 +1,18 @@
 import { InfoTooltip } from '../../src/components/InfoTooltip';
 
+// These tests are UNINTENTIONALLY testing not only the scale of the tooltip to
+// be 1 when triggered but also its transformX transformY skewX skewY since all
+// those values are coupled together in TailwindCSS transform property as a
+// matrix.
+
+// TODO: Write a helper function to retrieve and parse the value of the css
+// transform for example:
+// matrix(a, b, c, d, tx, ty)
+// to (scaleX, skewY,
+// skewX, scaleY, translateX, translateY)
+//
+// https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
+
 describe('InfoTooltip Component', () => {
   beforeEach(() => {
     cy.mount(<InfoTooltip tipContent="Tooltip content">Tooltip</InfoTooltip>);

@@ -1,4 +1,3 @@
-
 # Stage 1: Build the React application
 FROM node:21-alpine3.18 as build
 

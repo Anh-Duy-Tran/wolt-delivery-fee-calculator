@@ -5,7 +5,7 @@ import { OrderDetailFormType } from '../OrderDetailsForm/OrderDetailsForm';
 import {
   DeliveryFeeRuleId,
   FeeCalculatorReturnType,
-} from '../../utils/deliveryFeeCaculator';
+} from '../../utils/deliveryFeeCalculator';
 
 const mockOrderDetails: OrderDetailFormType = {
   cartValue: 100,

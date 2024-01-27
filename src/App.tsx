@@ -1,9 +1,11 @@
 import { SetStateAction, useState } from 'react';
 import { FeeResult } from './components/FeeResult/FeeResult';
 import { OrderDetailsForm } from './components/OrderDetailsForm';
-import { FeeCalculatorReturnType } from './utils/deliveryFeeCaculator';
+import { FeeCalculatorReturnType } from './utils/deliveryFeeCalculator';
 import { OrderDetailFormType } from './components/OrderDetailsForm/OrderDetailsForm';
 import { Introduction } from './components/Introduction';
+
+const TITLE_HEADER = 'DELIVERY FEE CALCULATOR';
 
 function App() {
   const [calculatedOrderDetails, setCalculatedOrderDetails] =
@@ -20,8 +22,8 @@ function App() {
   return (
     <div id="background">
       <div className="flex h-full w-full flex-col items-center overflow-auto pt-[30px]">
-        <h1>DELIVERY FEE CALCULATION</h1>
-        <div className="m-8 grid w-[70%] max-w-[1450px] grid-cols-1 gap-4 tablet:grid-cols-2">
+        <h1 className="px-4 text-center font-black">{TITLE_HEADER}</h1>
+        <div className="grid w-full max-w-[1450px] grid-cols-1 gap-4 p-8 tablet:w-[70%] tablet:grid-cols-2">
           <div>
             <OrderDetailsForm
               saveCalculatedOrderDetails={saveCalculatedOrderDetails}

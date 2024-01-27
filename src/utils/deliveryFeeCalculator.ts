@@ -7,21 +7,20 @@ import {
   eligibleForFreeDeliveryBasedOnCartValue,
 } from './ruleHelperFunctions';
 import { validationSchema } from './orderDetailsValidationSchema';
-
-export const MAX_DELIVERY_FEE = 15; // Euro
+import { MAX_DELIVERY_FEE } from './constants';
 
 export enum DeliveryFeeRuleId {
   // Free delivery rules
-  FreeDeliveryCartValueBased = 'freeDeliveryCartValueBased',
+  FreeDeliveryCartValueBased = 'FREE_DELIVERY_CART_VALUE_BASED',
 
   // Surcharge rule
-  SurchargeSmallOrder = 'surchargeSmallOrder',
-  SurchargeDeliveryDistance = 'surchargeDeliveryDistance',
-  SurchargeItemCount = 'surchargeItemCount',
-  SurchargeRushHour = 'rushHour',
+  SurchargeSmallOrder = 'SURCHARGE_SMALL_ORDER',
+  SurchargeDeliveryDistance = 'SURCHARGE_DELIVERY_DISTANCE',
+  SurchargeItemCount = 'SURCHARGE_ITEM_COUNT',
+  SurchargeRushHour = 'RUSH_HOUR',
 
   // Other rule
-  MaxFee = 'maxFee',
+  MaxFee = 'MAX_FEE',
 }
 
 type FeeAdjustmentResult =
@@ -38,8 +37,8 @@ type DeliveryFeeRuleType = {
    */
   shouldTerminateCalculationIfApplied?: boolean;
   /**
-   *
-   * @param requestedOrderDetails the requested Order details object
+   * Function try and apply rule to the requested order details and return the fee adjustment instructions.
+   * @param requestedOrderDetails the requested order details object
    * @param currentFee the current calculated delivery fee
    * @returns fee adjustment result object (type FeeAdjustmentResult)
    */
@@ -157,7 +156,7 @@ const deliveryFeeRuleIdsInOrder: DeliveryFeeRuleId[] = [
   // Example: Free delivery Rule should run first
   DeliveryFeeRuleId.FreeDeliveryCartValueBased,
 
-  // Normal surchage Rules
+  // Normal surcharge Rules
   DeliveryFeeRuleId.SurchargeSmallOrder,
   DeliveryFeeRuleId.SurchargeDeliveryDistance,
   DeliveryFeeRuleId.SurchargeItemCount,
@@ -181,7 +180,7 @@ const deliveryFeeRuleIdsInOrder: DeliveryFeeRuleId[] = [
  * @param orderDetails The details of the order.
  * @returns The calculated fee and applied rules.
  */
-export function deliveryFeeCaculator(
+export function deliveryFeeCalculator(
   orderDetails: OrderDetailFormType
 ): FeeCalculatorReturnType {
   // Validate the order details request object

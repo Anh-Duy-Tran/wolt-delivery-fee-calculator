@@ -4,8 +4,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '../Button';
 import {
   FeeCalculatorReturnType,
-  deliveryFeeCaculator,
-} from '../../utils/deliveryFeeCaculator';
+  deliveryFeeCalculator,
+} from '../../utils/deliveryFeeCalculator';
 import { Card } from '../Card';
 import { validationSchema } from '../../utils/orderDetailsValidationSchema';
 
@@ -36,12 +36,12 @@ export function OrderDetailsForm({
   });
 
   const onSubmit: SubmitHandler<OrderDetailFormType> = (data) => {
-    handleResult(deliveryFeeCaculator(data));
+    handleResult(deliveryFeeCalculator(data));
     saveCalculatedOrderDetails(data);
   };
 
   return (
-    <Card className=" flex flex-col gap-4">
+    <Card className="flex flex-col gap-4">
       <h2>ORDER INFORMATION</h2>
 
       <form
@@ -54,7 +54,9 @@ export function OrderDetailsForm({
           errorMessage={errors.cartValue?.message}
           data-testid="cartValue"
           label="Cart Value (EUR)"
-          type="number"
+          type="text"
+          inputMode="numeric"
+          autoComplete="off"
           step={0.1}
         />
         <InputField
@@ -62,7 +64,9 @@ export function OrderDetailsForm({
           errorMessage={errors.deliveryDistance?.message}
           data-testid="deliveryDistance"
           label="Delivery Distance (Meter)"
-          type="number"
+          type="text"
+          inputMode="numeric"
+          autoComplete="off"
           step={10}
         />
         <InputField
@@ -70,7 +74,9 @@ export function OrderDetailsForm({
           errorMessage={errors.numberOfItems?.message}
           data-testid="numberOfItems"
           label="Number of Items"
-          type="number"
+          type="text"
+          inputMode="numeric"
+          autoComplete="off"
         />
         <InputField
           {...register('orderTime')}

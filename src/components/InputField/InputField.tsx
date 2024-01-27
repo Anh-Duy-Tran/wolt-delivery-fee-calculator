@@ -32,7 +32,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       props.type === 'date' ||
       props.type === 'time' ||
       props.type === 'datetime-local';
-    const shouldCollpaseLabel = hasValue || inputTypeIsTimeOrDate;
+    const shouldCollapseLabel = hasValue || inputTypeIsTimeOrDate;
 
     return (
       <div>
@@ -50,7 +50,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           <label
             className={`linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
         select-none opacity-60 transition-all peer-focus:-translate-y-3 peer-focus:scale-[65%] ${
-          shouldCollpaseLabel && '-translate-y-3 scale-[65%]'
+          shouldCollapseLabel && '-translate-y-3 scale-[65%]'
         }`}
           >
             {label}

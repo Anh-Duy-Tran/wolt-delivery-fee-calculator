@@ -1,3 +1,20 @@
+import {
+  ADDITIONAL_DISTANCE_FEE,
+  ADDITIONAL_DISTANCE_UNIT,
+  BASE_DELIVERY_FEE,
+  BASE_DISTANCE_LIMIT,
+  BULK_ITEM_THRESHOLD,
+  BULK_SURCHARGE_AMOUNT,
+  ITEM_SURCHARGE_AMOUNT,
+  ITEM_SURCHARGE_THRESHOLD,
+  RUSH_HOUR_DAY_OF_WEEK,
+  RUSH_HOUR_END_TIME,
+  RUSH_HOUR_MULTIPLIER,
+  RUSH_HOUR_START_TIME,
+  SMALL_ORDER_SURCHARGE_THRESHOLD,
+  THRESHOLD_FREE_CART_VALUE,
+} from './constants';
+
 /**
  * The delivery is free when the cart value is equal or more than 200€.
  * @param cartValue Value of the shopping cart in euros.
@@ -6,8 +23,7 @@
 export function eligibleForFreeDeliveryBasedOnCartValue(
   cartValue: number
 ): boolean {
-  const threshold = 200; //Euro
-  return cartValue >= threshold;
+  return cartValue >= THRESHOLD_FREE_CART_VALUE;
 }
 
 /**
@@ -19,13 +35,7 @@ export function eligibleForFreeDeliveryBasedOnCartValue(
  * @return surcharge amount in euros.
  */
 export function calculateSmallOrderSurcharge(cartValue: number): number {
-  const smallOrderValueThreshold = 10; // Euro
-
-  if (cartValue < smallOrderValueThreshold) {
-    return Math.max(smallOrderValueThreshold - cartValue, 0);
-  }
-
-  return 0;
+  return Math.max(SMALL_ORDER_SURCHARGE_THRESHOLD - cartValue, 0);
 }
 
 /**
@@ -43,15 +53,12 @@ export function calculateSmallOrderSurcharge(cartValue: number): number {
  * @returns surcharge amount in euros (cannot be 0 in this case => rule always apply).
  */
 export function calculateDeliveryDistanceSurcharge(distance: number): number {
-  const fixPriceDistance = 1000; // Meter
-  const fixPrice = 2; // Euro
-  const distanceInterval = 500; // Meter
-  const pricePerInterval = 1; // Euro
-
   return (
-    fixPrice +
-    Math.ceil(Math.max(distance - fixPriceDistance, 0) / distanceInterval) *
-      pricePerInterval
+    BASE_DELIVERY_FEE +
+    Math.ceil(
+      Math.max(distance - BASE_DISTANCE_LIMIT, 0) / ADDITIONAL_DISTANCE_UNIT
+    ) *
+      ADDITIONAL_DISTANCE_FEE
   );
 }
 
@@ -71,19 +78,15 @@ export function calculateDeliveryDistanceSurcharge(distance: number): number {
  * @returns surcharge amount in euros.
  */
 export function calculateNumberOfItemSurcharge(numberOfItems: number): number {
-  const threshold = 4; // Number of items without surcharge
-  const bulkThreshold = 12; // Number of Items
-  const pricePerItem = 0.5; // Euro
-  const bulkPrice = 1.2; // Euro
-
   let surcharge = 0;
 
-  if (numberOfItems > threshold) {
-    surcharge += (numberOfItems - threshold) * pricePerItem;
+  if (numberOfItems >= ITEM_SURCHARGE_THRESHOLD) {
+    surcharge +=
+      (numberOfItems - ITEM_SURCHARGE_THRESHOLD + 1) * ITEM_SURCHARGE_AMOUNT;
   }
   // Adding bulk price if the number of item surpass the bulk number of item threshold
-  if (numberOfItems > bulkThreshold) {
-    surcharge += bulkPrice;
+  if (numberOfItems > BULK_ITEM_THRESHOLD) {
+    surcharge += BULK_SURCHARGE_AMOUNT;
   }
 
   return surcharge;
@@ -100,17 +103,12 @@ export function calculateRushHourSurcharge(
   orderTime: Date,
   currentFee: number
 ): number {
-  const rushDay = 5; // Friday
-  const lowerRushHour = 15; // 3PM or 15:00
-  const higherRushHour = 19; // 7PM or 19:00
-  const increaseFactor = 0.2; // 1.2 - 1 = 0.2 or 20% increase from the fee
-
   if (
-    orderTime.getDay() === rushDay &&
-    orderTime.getHours() >= lowerRushHour &&
-    orderTime.getHours() < higherRushHour
+    orderTime.getDay() === RUSH_HOUR_DAY_OF_WEEK &&
+    orderTime.getHours() >= RUSH_HOUR_START_TIME &&
+    orderTime.getHours() < RUSH_HOUR_END_TIME
   ) {
-    return currentFee * increaseFactor;
+    return currentFee * (RUSH_HOUR_MULTIPLIER - 1); // getting only the increased fee from the rule hence the "-1"
   }
 
   return 0;

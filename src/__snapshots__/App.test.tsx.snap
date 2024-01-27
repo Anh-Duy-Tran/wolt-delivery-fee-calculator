@@ -33,9 +33,10 @@ exports[`App Component > render correctly 1`] = `
                   <input
                     class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
                     data-testid="cartValue"
+                    inputmode="numeric"
                     name="cartValue"
                     step="0.1"
-                    type="number"
+                    type="text"
                   />
                   <label
                     class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
@@ -52,9 +53,10 @@ exports[`App Component > render correctly 1`] = `
                   <input
                     class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
                     data-testid="deliveryDistance"
+                    inputmode="numeric"
                     name="deliveryDistance"
                     step="10"
-                    type="number"
+                    type="text"
                   />
                   <label
                     class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
@@ -71,8 +73,9 @@ exports[`App Component > render correctly 1`] = `
                   <input
                     class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
                     data-testid="numberOfItems"
+                    inputmode="numeric"
                     name="numberOfItems"
-                    type="number"
+                    type="text"
                   />
                   <label
                     class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 

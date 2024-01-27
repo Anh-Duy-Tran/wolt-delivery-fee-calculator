@@ -1,10 +1,4 @@
-# Dockerfile
-# .dockerignore
-# node_modules
-# README.md
-# dist
-# .git
-# .github
+**/.github
 **/node_modules/
 **/dist
 **/.git

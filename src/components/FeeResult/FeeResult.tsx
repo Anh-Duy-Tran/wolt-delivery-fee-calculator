@@ -1,4 +1,4 @@
-import { FeeCalculatorReturnType } from '../../utils/deliveryFeeCaculator';
+import { FeeCalculatorReturnType } from '../../utils/deliveryFeeCalculator';
 import { Card } from '../Card';
 import { InfoTooltip } from '../InfoTooltip';
 import { OrderDetailFormType } from '../OrderDetailsForm/OrderDetailsForm';
@@ -47,9 +47,9 @@ export function FeeResult({ orderDetails, result }: FeeResultProps) {
                 data-testid={'info-icon'}
                 tipContent={
                   <ul className="flex list-inside list-disc flex-col gap-2">
-                    {result.subjectedRules.map((rule, i) => (
+                    {result.subjectedRules.map((rule) => (
                       <li
-                        key={i}
+                        key={rule.id}
                       >{`${rule.message} ${rule.amount !== '' ? `( ${rule.amount} )` : ''}`}</li>
                     ))}
                   </ul>
