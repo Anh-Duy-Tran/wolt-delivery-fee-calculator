@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation/graph/badge.svg?token=CJQV0NZ99N)](https://codecov.io/gh/Anh-Duy-Tran/wolt-delivery-fee-calculation) [![Default Project](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/jsr1iq&style=flat&logo=cypress)](https://cloud.cypress.io/projects/jsr1iq/runs)
 
-Please find in this folder the solution to the preliminary Assignment for the frontend internships.
+Please find in this folder the solution to the preliminary assignment for the frontend internships.
 
 Tech stack:
 
