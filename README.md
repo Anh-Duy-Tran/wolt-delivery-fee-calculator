@@ -108,7 +108,7 @@ $ npm run cy-component:local
 
 <i>Please find in the next chapter to see the demo of the mentioned features</i>
 
-- Calculate also the delivery fee component i.e. it shows how the application calculate the delivery fee and what rules are applied to the order.
+- Calculate also the delivery fee components i.e. it shows how the application calculate the delivery fee and what rules are applied to the order.
 - Interactive tooltip.
 - Accessible on Desktop (PC), pressing **tab** would cycle the focus to every interactable component.
 - Accessible also on Mobile, using responsive media query to restructure component to work well on smaller screen.
@@ -116,3 +116,21 @@ $ npm run cy-component:local
 ## Demos
 
 - Desktop (PC)
+  - Successful form submission, also interactive tooltip showing the fee components.
+
+    
+
+  - Form validation.
+ 
+    
+
+  - Accessibility with **tab**:
+ 
+    
+
+
+
+
+
+
+
