@@ -8,11 +8,13 @@ exports[`App Component > render correctly 1`] = `
     <div
       class="flex h-full w-full flex-col items-center overflow-auto pt-[30px]"
     >
-      <h1>
-        DELIVERY FEE CALCULATION
+      <h1
+        class="px-4 text-center font-black"
+      >
+        DELIVERY FEE CALCULATOR
       </h1>
       <div
-        class="m-8 grid w-[70%] max-w-[1450px] grid-cols-1 gap-4 tablet:grid-cols-2"
+        class="grid w-full max-w-[1450px] grid-cols-1 gap-4 p-8 tablet:w-[70%] tablet:grid-cols-2"
       >
         <div>
           <div
@@ -31,6 +33,7 @@ exports[`App Component > render correctly 1`] = `
                   class="relative flex w-full items-center justify-center"
                 >
                   <input
+                    autocomplete="off"
                     class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
                     data-testid="cartValue"
                     inputmode="numeric"
@@ -51,6 +54,7 @@ exports[`App Component > render correctly 1`] = `
                   class="relative flex w-full items-center justify-center"
                 >
                   <input
+                    autocomplete="off"
                     class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
                     data-testid="deliveryDistance"
                     inputmode="numeric"
@@ -71,6 +75,7 @@ exports[`App Component > render correctly 1`] = `
                   class="relative flex w-full items-center justify-center"
                 >
                   <input
+                    autocomplete="off"
                     class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
                     data-testid="numberOfItems"
                     inputmode="numeric"

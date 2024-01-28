@@ -36,8 +36,14 @@ export function OrderDetailsForm({
   });
 
   const onSubmit: SubmitHandler<OrderDetailFormType> = (data) => {
-    handleResult(deliveryFeeCalculator(data));
-    saveCalculatedOrderDetails(data);
+    try {
+      const result = deliveryFeeCalculator(data);
+      saveCalculatedOrderDetails(data);
+      handleResult(result);
+    } catch (error) {
+      console.error('Error during calculating the delivery fee:');
+      console.error(error);
+    }
   };
 
   return (

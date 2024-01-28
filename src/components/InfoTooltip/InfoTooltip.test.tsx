@@ -4,14 +4,14 @@ import { InfoTooltip } from '.';
 
 describe('InfoTooltip Component', () => {
   // Snapshot test
-  it('renders correctly', () => {
+  it('should render correct to the snapshot', () => {
     const { asFragment } = render(
       <InfoTooltip tipContent={<p>Tooltip content</p>}>Tooltip</InfoTooltip>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('applies custom class name', () => {
+  it('should apply props class name', () => {
     render(
       <InfoTooltip
         className={'custom-class'}
@@ -23,13 +23,13 @@ describe('InfoTooltip Component', () => {
     expect(screen.getByText('Tooltip')).toHaveClass('custom-class');
   });
 
-  it('displays the correct tooltip content', () => {
+  it('should display the expected tooltip content', () => {
     const tooltipContent = 'Tooltip content';
     render(<InfoTooltip tipContent={<p>{tooltipContent}</p>} />);
     expect(screen.getByText(tooltipContent)).toBeInTheDocument();
   });
 
-  it('renders children correctly', () => {
+  it('should render children correctly', () => {
     render(
       <InfoTooltip tipContent={<p>Tooltip content</p>}>
         <button>Click me</button>
@@ -38,7 +38,7 @@ describe('InfoTooltip Component', () => {
     expect(screen.getByText('Click me')).toBeInTheDocument();
   });
 
-  it('would shows tooltip content on hover', () => {
+  it('should show tooltip content on hover', () => {
     render(
       <InfoTooltip
         data-testid={'info-icon'}
@@ -53,7 +53,7 @@ describe('InfoTooltip Component', () => {
     expect(screen.getByTestId('tooltip')).toHaveClass('peer-hover:opacity-100');
   });
 
-  it('would shows tooltip content on focus', () => {
+  it('should shows tooltip content on focus', () => {
     render(
       <InfoTooltip
         data-testid={'info-icon'}

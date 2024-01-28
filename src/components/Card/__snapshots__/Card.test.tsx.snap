@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Card Component > renders correctly 1`] = `
+exports[`Card Component > should render correct to the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="w-full rounded-xl bg-white p-5 shadow-xl"

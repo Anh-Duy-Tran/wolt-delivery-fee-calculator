@@ -32,13 +32,13 @@ const mockResult: FeeCalculatorReturnType = {
 
 describe('FeeResult Component', () => {
   // Snapshot test
-  it('renders correctly', () => {
+  it('should render correct to the snapshot', () => {
     const { asFragment } = render(<FeeResult />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   // Snapshot test
-  it('renders correctly with props', () => {
+  it('should render correctly with props', () => {
     const { asFragment } = render(
       <FeeResult orderDetails={mockOrderDetails} result={mockResult} />
     );
@@ -46,13 +46,13 @@ describe('FeeResult Component', () => {
   });
 
   // Test for rendering with no props
-  it('renders with default message when no props are provided', () => {
+  it('should render with default message when no props are provided', () => {
     render(<FeeResult />);
     expect(screen.getByText(DEFAULT_MESSAGE)).toBeInTheDocument();
   });
 
   // Test for rendering with props
-  it('renders order details and fee result when props are provided', () => {
+  it('should render order details and fee result when props are provided', () => {
     render(<FeeResult orderDetails={mockOrderDetails} result={mockResult} />);
     expect(screen.getByTestId('submittedCartValue')).toHaveTextContent(
       '• Cart Value: 100.00€'
@@ -70,7 +70,7 @@ describe('FeeResult Component', () => {
   });
 
   // Test for tooltip content in FeeResult
-  it('passes correct tooltip content to InfoTooltip', () => {
+  it('should pass correct tooltip content to InfoTooltip', () => {
     render(<FeeResult orderDetails={mockOrderDetails} result={mockResult} />);
 
     const infoIcon = screen.getByTestId('info-icon');
@@ -84,7 +84,7 @@ describe('FeeResult Component', () => {
     });
   });
 
-  it('displays tooltip with fee calculation rules on hover', () => {
+  it('should display tooltip with fee calculation rules on hover', () => {
     render(<FeeResult orderDetails={mockOrderDetails} result={mockResult} />);
     const infoIcon = screen.getByTestId('info-icon');
     fireEvent.mouseOver(infoIcon);
@@ -94,7 +94,7 @@ describe('FeeResult Component', () => {
     expect(tooltip).toBeVisible();
   });
 
-  it('displays tooltip with fee calculation rules on focus', () => {
+  it('should display tooltip with fee calculation rules on focus', () => {
     render(<FeeResult orderDetails={mockOrderDetails} result={mockResult} />);
     const infoIcon = screen.getByTestId('info-icon');
     fireEvent.focus(infoIcon);

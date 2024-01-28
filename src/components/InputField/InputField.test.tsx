@@ -4,19 +4,19 @@ import { InputField } from '.';
 import React from 'react';
 
 describe('InputField Component', () => {
-  it('renders correctly', () => {
+  it('should render correct to the snapshot', () => {
     const { asFragment } = render(<InputField label="Test Label" />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('updates value on change', () => {
+  it('should update value on change', () => {
     render(<InputField label="Test Label" />);
     const input = screen.getByTestId('input-field') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'New Value' } });
     expect(input.value).toBe('New Value');
   });
 
-  it('calls onChange handler', () => {
+  it('should call onChange handler', () => {
     const handleChange = vi.fn();
     render(<InputField label="Test Label" onChange={handleChange} />);
     const input = screen.getByTestId('input-field');
@@ -24,18 +24,18 @@ describe('InputField Component', () => {
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
-  it('displays error message when provided', () => {
+  it('should display error message when provided', () => {
     const errorMessage = 'Error message';
     render(<InputField label="Test Label" errorMessage={errorMessage} />);
     expect(screen.getByText(errorMessage)).toBeInTheDocument();
   });
 
-  it('forwards additional props to input', () => {
+  it('should forward additional props to input', () => {
     render(<InputField label="Test Label" placeholder="Enter text" />);
     expect(screen.getByPlaceholderText(/enter text/i)).toBeInTheDocument();
   });
 
-  it('forwards ref to input element', () => {
+  it('should forward ref to input element', () => {
     const ref = React.createRef<HTMLInputElement>();
     render(<InputField label="Test Label" ref={ref} />);
     expect(ref.current).toBeInstanceOf(HTMLInputElement);

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`InputField Component > renders correctly 1`] = `
+exports[`InputField Component > should render correct to the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div

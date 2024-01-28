@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { FeeResult } from './components/FeeResult/FeeResult';
 import { OrderDetailsForm } from './components/OrderDetailsForm';
 import { FeeCalculatorReturnType } from './utils/deliveryFeeCalculator';
@@ -12,13 +12,6 @@ function App() {
     useState<OrderDetailFormType>();
   const [feeResult, setFeeResult] = useState<FeeCalculatorReturnType>();
 
-  const handleResult = (
-    result: SetStateAction<FeeCalculatorReturnType | undefined>
-  ) => setFeeResult(result);
-
-  const saveCalculatedOrderDetails = (orderDetails: OrderDetailFormType) =>
-    setCalculatedOrderDetails(orderDetails);
-
   return (
     <div id="background">
       <div className="flex h-full w-full flex-col items-center overflow-auto pt-[30px]">
@@ -26,8 +19,8 @@ function App() {
         <div className="grid w-full max-w-[1450px] grid-cols-1 gap-4 p-8 tablet:w-[70%] tablet:grid-cols-2">
           <div>
             <OrderDetailsForm
-              saveCalculatedOrderDetails={saveCalculatedOrderDetails}
-              handleResult={handleResult}
+              saveCalculatedOrderDetails={setCalculatedOrderDetails}
+              handleResult={setFeeResult}
             />
           </div>
           <div className="flex flex-col gap-4">

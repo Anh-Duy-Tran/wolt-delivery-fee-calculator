@@ -5,13 +5,13 @@ import { Button } from '.';
 
 describe('Button Component', () => {
   // Snapshot test
-  it('renders correctly', () => {
+  it('should render correct to the snapshot', () => {
     const { asFragment } = render(<Button>label</Button>);
     expect(asFragment()).toMatchSnapshot();
   });
 
   // Test for class application
-  it('applies default and custom classes', () => {
+  it('should apply default and custom classes', () => {
     render(<Button className="custom-class" />);
     const button = screen.getByRole('button');
     expect(button).toHaveClass(
@@ -20,7 +20,7 @@ describe('Button Component', () => {
   });
 
   // Test for props spreading
-  it('spreads additional props to the button element', () => {
+  it('should spread additional props to the button element', () => {
     render(<Button aria-label="Test Button" />);
     expect(
       screen.getByRole('button', { name: 'Test Button' })
@@ -28,7 +28,7 @@ describe('Button Component', () => {
   });
 
   // Test for handling click events
-  it('handles click events', () => {
+  it('should handle click events', () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick} />);
     const button = screen.getByRole('button');

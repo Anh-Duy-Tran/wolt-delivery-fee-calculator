@@ -35,6 +35,16 @@ describe('OrderDetailsForm Component', () => {
     );
   });
 
+  it('should render correct to the snapshot', () => {
+    const { asFragment } = render(
+      <OrderDetailsForm
+        handleResult={mockHandleResult}
+        saveCalculatedOrderDetails={mockSaveCalculatedOrderDetails}
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('renders all input fields', () => {
     expect(screen.getByTestId('cartValue')).toBeInTheDocument();
     expect(screen.getByTestId('deliveryDistance')).toBeInTheDocument();
@@ -58,7 +68,7 @@ describe('OrderDetailsForm Component', () => {
     });
   });
 
-  it('does not submit form with invalid data', async () => {
+  it('should not submit form with invalid data', async () => {
     // Try to set one of the field in the form to the invalid data and tried to submit the form
     Object.entries(INVALID_FORM_DATA).forEach(
       ([invalidDataField, invalidData]) => {
@@ -81,7 +91,7 @@ describe('OrderDetailsForm Component', () => {
     });
   });
 
-  it('submits form with valid data', async () => {
+  it('should submits form with valid data', async () => {
     fireEvent.change(screen.getByTestId('cartValue'), {
       target: { value: VALID_FORM_DATA.cartValue },
     });

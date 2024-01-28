@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Button Component > renders correctly 1`] = `
+exports[`Button Component > should render correct to the snapshot 1`] = `
 <DocumentFragment>
   <button
     class="rounded-[6px] bg-wolt-blue p-3 text-white"

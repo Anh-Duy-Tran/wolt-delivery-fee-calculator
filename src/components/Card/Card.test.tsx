@@ -4,13 +4,13 @@ import { Card } from '.';
 
 describe('Card Component', () => {
   // Snapshot test
-  it('renders correctly', () => {
+  it('should render correct to the snapshot', () => {
     const { asFragment } = render(<Card>Cart Title</Card>);
     expect(asFragment()).toMatchSnapshot();
   });
 
   // Test for class application
-  it('applies default and custom classes', () => {
+  it('should apply default and custom classes', () => {
     render(<Card className="custom-class" />);
     const cardElement = screen.getByTestId('card');
     expect(cardElement).toHaveClass(
@@ -19,14 +19,14 @@ describe('Card Component', () => {
   });
 
   // Test for props spreading
-  it('spreads additional props to the div element', () => {
+  it('should spread additional props to the div element', () => {
     render(<Card aria-label="Test Card" />);
     const cardElement = screen.getByTestId('card');
     expect(cardElement).toHaveAttribute('aria-label', 'Test Card');
   });
 
   // Test for children rendering
-  it('renders children correctly', () => {
+  it('should render children correctly', () => {
     render(
       <Card>
         <p>Test Child</p>

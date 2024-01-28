@@ -1,0 +1,107 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OrderDetailsForm Component > should render correct to the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col gap-4 w-full rounded-xl bg-white p-5 shadow-xl"
+    data-testid="card"
+  >
+    <h2>
+      ORDER INFORMATION
+    </h2>
+    <form
+      class="flex flex-col gap-2"
+      novalidate=""
+    >
+      <div>
+        <div
+          class="relative flex w-full items-center justify-center"
+        >
+          <input
+            autocomplete="off"
+            class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
+            data-testid="cartValue"
+            inputmode="numeric"
+            name="cartValue"
+            step="0.1"
+            type="text"
+          />
+          <label
+            class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
+        select-none opacity-60 transition-all peer-focus:-translate-y-3 peer-focus:scale-[65%] false"
+          >
+            Cart Value (EUR)
+          </label>
+        </div>
+      </div>
+      <div>
+        <div
+          class="relative flex w-full items-center justify-center"
+        >
+          <input
+            autocomplete="off"
+            class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
+            data-testid="deliveryDistance"
+            inputmode="numeric"
+            name="deliveryDistance"
+            step="10"
+            type="text"
+          />
+          <label
+            class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
+        select-none opacity-60 transition-all peer-focus:-translate-y-3 peer-focus:scale-[65%] false"
+          >
+            Delivery Distance (Meter)
+          </label>
+        </div>
+      </div>
+      <div>
+        <div
+          class="relative flex w-full items-center justify-center"
+        >
+          <input
+            autocomplete="off"
+            class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
+            data-testid="numberOfItems"
+            inputmode="numeric"
+            name="numberOfItems"
+            type="text"
+          />
+          <label
+            class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
+        select-none opacity-60 transition-all peer-focus:-translate-y-3 peer-focus:scale-[65%] false"
+          >
+            Number of Items
+          </label>
+        </div>
+      </div>
+      <div>
+        <div
+          class="relative flex w-full items-center justify-center"
+        >
+          <input
+            class="peer w-full rounded-md border-2 border-wolt-grey p-4 pb-[6px] pt-[22px] outline-none transition placeholder:opacity-0 hover:border-wolt-blue focus:border-wolt-blue focus:shadow-border-like focus:placeholder:opacity-100"
+            data-testid="orderTime"
+            name="orderTime"
+            placeholder="DD.MM.YYYY"
+            type="datetime-local"
+          />
+          <label
+            class="linear duration-config pointer-events-none absolute w-full origin-left translate-x-4 scale-100 
+        select-none opacity-60 transition-all peer-focus:-translate-y-3 peer-focus:scale-[65%] -translate-y-3 scale-[65%]"
+          >
+            Time
+          </label>
+        </div>
+      </div>
+      <button
+        class="mt-2 rounded-[6px] bg-wolt-blue p-3 text-white"
+        data-testid="calculateFee"
+        type="submit"
+      >
+        CALCULATE FEE
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
