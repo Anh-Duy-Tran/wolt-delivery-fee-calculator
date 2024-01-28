@@ -18,7 +18,7 @@ Please find in this folder the solution to the preliminary assignment for the fr
 # Table of Contents
 
 - [Wolt Summer 2024 Engineering Internships Assignment](#wolt-summer-2024-engineering-internships-assignment)
-    - [Tech stack:](#tech-stack)
+  - [Tech stack:](#tech-stack)
 - [Table of Contents](#table-of-contents)
   - [Requirement](#requirement)
   - [Getting started](#getting-started)
