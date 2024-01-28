@@ -8,12 +8,28 @@ Please find in this folder the solution to the preliminary assignment for the fr
 
 ### Tech stack:
 
-- **React** with **Typescript** bundle with **Vite**.
+- **React** with **Typescript** bundled with **Vite**.
 - Styling with **TailwindCss**.
 - Unit testing with **Vitest** and **Jest**.
 - End to end testing with **Cypress**.
 - CI/CD with **Github actions**.
 - Deployed with **Vercel**.
+
+# Table of Contents
+
+- [Wolt Summer 2024 Engineering Internships Assignment](#wolt-summer-2024-engineering-internships-assignment)
+    - [Tech stack:](#tech-stack)
+- [Table of Contents](#table-of-contents)
+  - [Requirement](#requirement)
+  - [Getting started](#getting-started)
+    - [With Docker Compose](#with-docker-compose)
+    - [With Docker](#with-docker)
+    - [With npm](#with-npm)
+  - [Testing](#testing)
+    - [Unit test (with Vitest)](#unit-test-with-vitest)
+    - [End-to-end test (with Cypress)](#end-to-end-test-with-cypress)
+  - [Notable extra features](#notable-extra-features)
+  - [Demos](#demos)
 
 ## Requirement
 
@@ -25,7 +41,7 @@ There are multiple ways to build and run this application. Please satisfy one of
 
 ## Getting started
 
-### With Docker Compose:
+### With Docker Compose
 
 <i>Required Docker and Docker Compose</i>
 
@@ -35,9 +51,9 @@ Build and run command for docker compose:
 $ docker compose up -d
 ```
 
-Once finish, the application should be available on [http://localhost:3000](http://localhost:3000)
+Once finished, the application should be available on [http://localhost:3000](http://localhost:3000)
 
-### With Docker:
+### With Docker
 
 <i>Required Docker</i>
 
@@ -53,9 +69,9 @@ Run the image with:
 $ docker run --name  dfc-container -p 3000:3000 duytran/delivery-fee-calculator:latest
 ```
 
-Once finish, the application should be available on [http://localhost:3000](http://localhost:3000)
+Once finished, the application should be available on [http://localhost:3000](http://localhost:3000)
 
-### With npm:
+### With npm
 
 <i>Required Node</i>
 
@@ -78,11 +94,11 @@ $ npm run build
 $ npm run preview
 ```
 
-### Testing
+## Testing
 
 <i>Required Node</i>
 
-**Unit test (with Vitest):**
+### Unit test (with Vitest)
 
 Start the test runner in the interactive watch mode.
 
@@ -90,7 +106,7 @@ Start the test runner in the interactive watch mode.
 $ npm run test
 ```
 
-**End to end test (with Cypress):**
+### End-to-end test (with Cypress)
 
 Run end to end test suites.
 
@@ -108,11 +124,11 @@ $ npm run cy-component:local
 
 <i>Please find in the next chapter to see the demo of the mentioned features</i>
 
-- Calculate also the delivery fee components i.e. it shows how the application calculate the delivery fee and what rules are applied to the order.
+- The application also calculates the components of the delivery fee, detailing how the fee is computed and which rules are applied to the order.
 - Interactive tooltip.
 - Accessible on Desktop (PC), pressing **tab** would cycle the focus to every interactable component.
 - Accessible also on Mobile, using responsive media query to restructure component to work well on smaller screen.
 
 ## Demos
 
-<i>Demo video seems to be too large to attach to markdown, please visit **./demos** for the demo videos. Thank you!</i>
+<i>The demo video is too large to attach to this markdown file. Please visit the ./demos directory for demo videos. Thank you!</i>
