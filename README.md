@@ -118,11 +118,11 @@ $ npm run cy-component:local
 - Desktop (PC)
   - Successful form submission, also interactive tooltip showing the fee components.
 
-    
+  ![Successful form submission](./demos/success-form-submit.mov)
 
   - Form validation.
  
-    
+  ![Successful form submission](./demos/success-form-submit.mov)
 
   - Accessibility with **tab**:
  

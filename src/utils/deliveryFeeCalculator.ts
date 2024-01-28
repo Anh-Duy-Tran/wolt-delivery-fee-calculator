@@ -140,7 +140,7 @@ export const deliveryFeeRulesMap: DeliveryFeeRulesMapType = {
     },
   },
   [DeliveryFeeRuleId.MaxFee]: {
-    message: `Maximum delivery fee of ${MAX_DELIVERY_FEE}€ reached`,
+    message: `Maximum delivery fee of 15€ reached`,
     getFeeAdjustment: (_, currentFee) =>
       currentFee > MAX_DELIVERY_FEE
         ? {
