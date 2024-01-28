@@ -115,22 +115,4 @@ $ npm run cy-component:local
 
 ## Demos
 
-- Desktop (PC)
-  - Successful form submission, also interactive tooltip showing the fee components.
-
-  ![Successful form submission](./demos/success-form-submit.mov)
-
-  - Form validation.
- 
-  ![Successful form submission](./demos/success-form-submit.mov)
-
-  - Accessibility with **tab**:
- 
-    
-
-
-
-
-
-
-
+<i>Demo video seems to be too large to attach to markdown, please visit **./demos** for the demo videos. Thank you!</i>

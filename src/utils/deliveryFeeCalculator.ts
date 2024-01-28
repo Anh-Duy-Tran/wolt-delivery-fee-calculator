@@ -37,7 +37,7 @@ type DeliveryFeeRuleType = {
    */
   shouldTerminateCalculationIfApplied?: boolean;
   /**
-   * Function try and apply rule to the requested order details and return the fee adjustment instructions.
+   * Function try to apply rule to the requested order details and return the fee adjustment instructions.
    * @param requestedOrderDetails the requested order details object
    * @param currentFee the current calculated delivery fee
    * @returns fee adjustment result object (type FeeAdjustmentResult)
