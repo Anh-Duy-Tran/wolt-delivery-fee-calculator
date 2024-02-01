@@ -131,4 +131,15 @@ $ npm run cy-component:local
 
 ## Demos
 
-<i>The demo video is too large to attach to this markdown file. Please visit the ./demos directory for demo videos. Thank you!</i>
+
+https://github.com/Anh-Duy-Tran/wolt-delivery-fee-calculation/assets/113171462/395d0986-09bf-4ddb-b264-fb2697cba24d
+
+
+https://github.com/Anh-Duy-Tran/wolt-delivery-fee-calculation/assets/113171462/4b663d8e-af2a-424a-bb93-baf0c543dbc3
+
+
+https://github.com/Anh-Duy-Tran/wolt-delivery-fee-calculation/assets/113171462/b3f3c1d9-1546-427d-8277-ee5b36ad98de
+
+
+https://github.com/Anh-Duy-Tran/wolt-delivery-fee-calculation/assets/113171462/8633060f-283a-4246-9f83-d81060e0f7bf
+
