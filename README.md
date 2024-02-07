@@ -66,7 +66,7 @@ $ docker build -t duytran/delivery-fee-calculator:latest .
 Run the image with:
 
 ```
-$ docker run --name  dfc-container -p 3000:3000 duytran/delivery-fee-calculator:latest
+$ docker run --name dfc-container -p 3000:3000 duytran/delivery-fee-calculator:latest
 ```
 
 Once finished, the application should be available on [http://localhost:3000](http://localhost:3000)
